@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wisp privacy policy</title>
+<meta name="description" content="What the Wisp Mac app sends, to whom, and what it never collects.">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root { --bg: #07060c; --ink: #f5f2ff; --muted: #a49fbb; --dim: #6e6987; --v: #ad91ff; --line: rgba(173,145,255,.16);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI", Roboto, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html { background: var(--bg); color-scheme: dark; }
+body { margin: 0; background: radial-gradient(60% 40% at 50% 0%, rgba(123,92,255,.18), transparent 70%), var(--bg); color: var(--ink); font: 17px/1.65 var(--font); -webkit-font-smoothing: antialiased; }
+a { color: var(--v); }
+.wrap { width: min(760px, 100% - 32px); margin: 0 auto; padding: 36px 0 80px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font: 700 21px/1 ui-rounded, var(--font); letter-spacing: -.02em; }
+.brand img { width: 30px; height: 30px; border-radius: 8px; }
+h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.05; letter-spacing: -.04em; margin: 48px 0 6px; }
+.updated { color: var(--dim); margin: 0 0 32px; font-size: 15px; }
+h2 { font-size: 21px; letter-spacing: -.02em; margin: 40px 0 10px; }
+p, li { color: #d6d2e6; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.card { border: 1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 20px; padding: 6px 24px; margin-top: 12px; }
+footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.06); color: var(--dim); font-size: 14px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="brand" href="./"><img src="icon.png" alt="" width="30" height="30"><span>wisp</span></a>
+  <h1>Privacy policy</h1>
+  <p class="updated">Last updated: September 26, 2026</p>
+  <p>Wisp is a Mac app that answers questions about the part of your screen you select. It’s built to collect as little as possible.</p>
+
+  <h2>What the app sends, and to whom</h2>
+  <div class="card">
+    <ul>
+      <li><strong>The region you select, only when you capture it.</strong> Wisp sends the image of the area you dragged over, plus the text it recognized on your Mac, to the AI provider <em>you</em> chose in Settings:
+        <ul>
+          <li>Google (Gemini), under Google’s terms</li>
+          <li>OpenAI, under OpenAI’s terms</li>
+          <li>nobody, if you use Ollama or LM Studio, which run on your own Mac</li>
+        </ul>
+        You can turn off image sending in Settings so that only the recognized text is sent.</li>
+      <li><strong>Your license key.</strong> It goes to Gumroad, our store, about once a day to check that your license is active.</li>
+      <li><strong>Update checks.</strong> Wisp checks for new versions about once a day by downloading a small update file from GitHub.</li>
+    </ul>
+  </div>
+
+  <h2>What the app doesn’t do</h2>
+  <div class="card">
+    <ul>
+      <li>It doesn’t record your screen continuously or look at anything you didn’t select.</li>
+      <li>It has no Wisp servers, analytics, ads or tracking.</li>
+      <li>It doesn’t save your captures or answers to disk. The session list lives in memory and clears when you quit.</li>
+    </ul>
+  </div>
+
+  <h2>What stays on your Mac</h2>
+  <div class="card">
+    <ul>
+      <li>Your settings and license status, in the app’s preferences.</li>
+      <li>Your AI keys, in the macOS Keychain.</li>
+    </ul>
+  </div>
+
+  <h2>Purchases</h2>
+  <p>Purchases are handled by Gumroad, which processes payment details under its own privacy policy. We never see your card.</p>
+
+  <h2>This website</h2>
+  <p>This site has no analytics and sets no cookies of its own. To show the page it loads fonts from Google Fonts, the 3D graphics library from jsDelivr, and Gumroad’s checkout script, so those services receive the usual request details, such as your IP address. The site is hosted on GitHub Pages.</p>
+
+  <h2>Contact</h2>
+  <p>Reply to your Gumroad receipt email.</p>
+
+  <footer><a href="./">← Back to Wisp</a></footer>
+</main>
+</body>
+</html>

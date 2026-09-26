@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wisp for Mac: highlight anything, get the answer right there</title>
+<meta name="description" content="Wisp is a Mac app. Press a shortcut, drag over anything on your screen, and get an answer, translation, summary or explanation right where you are. Works with a free Gemini key, OpenAI, or fully offline.">
+<meta name="theme-color" content="#07060c">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wisp">
+<meta property="og:title" content="Wisp: highlight anything on your Mac, get the answer right there">
+<meta property="og:description" content="Press ⇧⌘Space, drag over anything, and the answer shows up next to it. $15 once, or $2.99/mo with a 7-day free trial.">
+<meta property="og:image" content="https://brocmonnow60-wq.github.io/wisp/og.png">
+<meta property="og:url" content="https://brocmonnow60-wq.github.io/wisp/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Wisp",
+  "operatingSystem": "macOS 14 or later", "applicationCategory": "ProductivityApplication",
+  "description": "Highlight anything on your Mac's screen and get an answer, translation, summary or explanation right there.",
+  "offers": [
+    { "@type": "Offer", "name": "Wisp Lifetime", "price": "15.00", "priceCurrency": "USD", "url": "https://gamingdude1.gumroad.com/l/wisp-lifetime" },
+    { "@type": "Offer", "name": "Wisp Monthly", "price": "2.99", "priceCurrency": "USD", "url": "https://gamingdude1.gumroad.com/l/wisp" }
+  ] }
+</script>
+<style>
+:root {
+  --bg: #07060c; --bg2: #0c0a14;
+  --ink: #f5f2ff; --muted: #a49fbb; --dim: #6e6987;
+  --v: #ad91ff; --v2: #7b5cff; --v3: #d6c9ff;
+  --line: rgba(173,145,255,.16); --line2: rgba(173,145,255,.3);
+  --card: rgba(255,255,255,.035);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, "Segoe UI", Roboto, system-ui, sans-serif;
+  --serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); color-scheme: dark; -webkit-text-size-adjust: 100%; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.55 var(--font); overflow-x: clip; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+img, svg, canvas { display: block; }
+a { color: inherit; text-decoration: none; }
+p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+kbd { font: 600 .86em/1 var(--font); display: inline-block; padding: .28em .5em .3em; border-radius: .42em; background: linear-gradient(#2d2742, #1f1a2f);
+  border: 1px solid rgba(173,145,255,.32); border-bottom-width: 2.5px; color: var(--ink); white-space: nowrap; vertical-align: .08em; }
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+section { position: relative; }
+.eyebrow { font: 600 13px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--v); margin: 0 0 18px; display: inline-flex; gap: 10px; align-items: center; }
+.eyebrow::before { content: ""; width: 18px; height: 1px; background: currentColor; opacity: .6; }
+.h2 { font-size: clamp(36px, 5.4vw, 66px); line-height: 1.02; letter-spacing: -.045em; font-weight: 800; margin: 0; }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+.grad { background: linear-gradient(100deg, #fff 0%, #dccfff 35%, #ad91ff 70%, #8a6bff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { color: var(--muted); font-size: clamp(17px, 1.6vw, 20px); max-width: 640px; margin: 18px 0 0; }
+.section-head { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 56px; }
+.section-head .sub { margin-inline: auto; }
+.block { padding: 120px 0; }
+
+/* buttons */
+.btn { --h: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: var(--h); padding: 0 22px; border-radius: 999px;
+  font-weight: 650; font-size: 16px; letter-spacing: -.01em; white-space: nowrap; position: relative; isolation: isolate; overflow: hidden;
+  transition: transform .25s cubic-bezier(.3,.7,.4,1.5), box-shadow .25s, background .25s, border-color .25s; }
+.btn:active { transform: scale(.97); }
+.btn-primary { color: #140f25; background: linear-gradient(180deg, #d9ccff, #ab8fff 55%, #8e6eff);
+  box-shadow: 0 10px 30px -8px rgba(123,92,255,.7), inset 0 1px 0 rgba(255,255,255,.65), inset 0 -2px 0 rgba(60,30,160,.25); }
+.btn-primary::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.55) 48%, transparent 66%);
+  transform: translateX(-120%); transition: transform .8s var(--ease); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -10px rgba(123,92,255,.9), inset 0 1px 0 rgba(255,255,255,.65); }
+.btn-primary:hover::after { transform: translateX(120%); }
+.btn-ghost { color: var(--ink); background: rgba(255,255,255,.05); border: 1px solid rgba(173,145,255,.28); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.btn-ghost:hover { background: rgba(173,145,255,.13); border-color: rgba(173,145,255,.5); transform: translateY(-2px); }
+.btn-lg { --h: 58px; padding: 0 30px; font-size: 17px; }
+.btn-sm { --h: 40px; padding: 0 18px; font-size: 14.5px; }
+.btn .price-tag { font-weight: 800; }
+
+/* nav */
+.progress { position: fixed; left: 0; top: 0; height: 2px; width: 100%; z-index: 60; transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, #7b5cff, #d6c9ff); pointer-events: none; }
+.nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 50; width: min(1120px, 100% - 24px); display: flex; align-items: center; gap: 20px;
+  padding: 8px 8px 8px 16px; border-radius: 999px; border: 1px solid transparent; transition: background .35s, border-color .35s, box-shadow .35s; }
+.nav.scrolled { background: rgba(14,12,22,.66); border-color: rgba(173,145,255,.15); -webkit-backdrop-filter: blur(18px) saturate(1.5); backdrop-filter: blur(18px) saturate(1.5); box-shadow: 0 12px 40px -20px rgba(0,0,0,.9); }
+.brand { display: flex; align-items: center; gap: 10px; font: 700 21px/1 ui-rounded, var(--font); letter-spacing: -.02em; }
+.brand img { width: 30px; height: 30px; border-radius: 8px; }
+.nav .links { display: flex; gap: 28px; margin-left: auto; font-size: 14.5px; color: var(--muted); }
+.nav .links a { transition: color .2s; }
+.nav .links a:hover { color: var(--ink); }
+@media (max-width: 800px) { .nav .links { display: none; } .nav .btn { margin-left: auto; } }
+
+/* hero */
+.hero { min-height: 100svh; display: flex; align-items: center; padding: 120px 0 90px; overflow: clip; }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 140px; background: linear-gradient(transparent, var(--bg)); pointer-events: none; }
+.hero-bg { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(55% 55% at calc(70% + var(--mx, 0) * 8%) calc(42% + var(--my, 0) * 8%), rgba(123,92,255,.30), transparent 70%),
+              radial-gradient(40% 40% at 8% 92%, rgba(173,145,255,.10), transparent 70%); }
+.floor { position: absolute; left: -50%; right: -50%; bottom: -8%; height: 62%; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(rgba(173,145,255,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(173,145,255,.22) 1px, transparent 1px);
+  background-size: 64px 64px; transform: perspective(520px) rotateX(74deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 22%, transparent 74%); mask-image: linear-gradient(to top, transparent 0%, #000 22%, transparent 74%);
+  animation: floor 3.2s linear infinite; }
+@keyframes floor { to { background-position: 0 64px; } }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 32px; align-items: center; position: relative; z-index: 1; }
+.chip { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px; font-size: 14px; color: var(--v3);
+  background: rgba(173,145,255,.08); border: 1px solid rgba(173,145,255,.25); transition: background .25s, border-color .25s; animation: fadeUp .8s var(--ease) both; }
+.chip:hover { background: rgba(173,145,255,.15); border-color: rgba(173,145,255,.45); }
+.chip b { color: #140f25; background: var(--v); border-radius: 999px; padding: 3px 9px; font-size: 12px; letter-spacing: .02em; }
+.h1 { font-size: clamp(46px, 7.2vw, 98px); line-height: .97; letter-spacing: -.055em; font-weight: 800; margin: 24px 0 0; }
+.h1 .ln { display: block; }
+.h1 .w { display: inline-block; transform-origin: 50% 100%; animation: wordIn 1s var(--ease) both; animation-delay: calc(var(--i) * 75ms + 120ms); }
+.h1 .serif { font-size: 1.12em; line-height: .9; padding: 0 .08em .06em 0; letter-spacing: -.02em; }
+@keyframes wordIn { from { opacity: 0; transform: perspective(700px) translateY(45%) rotateX(-75deg); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.lede { font-size: clamp(17px, 1.5vw, 20px); color: var(--muted); max-width: 560px; margin: 28px 0 0; animation: fadeUp 1s var(--ease) .55s both; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; animation: fadeUp 1s var(--ease) .7s both; }
+.ticks { display: flex; gap: 8px 20px; flex-wrap: wrap; list-style: none; padding: 0; margin: 26px 0 0; color: var(--dim); font-size: 14.5px; animation: fadeUp 1s var(--ease) .85s both; }
+.ticks li::before { content: "✓"; color: var(--v); margin-right: 7px; font-weight: 700; }
+.hero-visual { position: relative; height: min(600px, 58vw); }
+.hero-visual canvas { position: absolute; left: -14%; top: -14%; width: 128%; height: 128%; opacity: 0; transition: opacity 1.2s; pointer-events: none; }
+.gl canvas { opacity: 1; }
+.fallback-icon { position: absolute; left: 50%; top: 50%; width: 58%; max-width: 330px; translate: -50% -50%; border-radius: 22%;
+  filter: drop-shadow(0 30px 70px rgba(123,92,255,.5)); animation: floaty 6s ease-in-out infinite; transition: opacity .8s; }
+.gl .fallback-icon { opacity: 0; }
+@keyframes floaty { 50% { transform: translateY(-14px) rotate(-2deg); } }
+.fc { position: absolute; z-index: 2; padding: 11px 15px; border-radius: 15px; font-size: 13.5px; line-height: 1.35; white-space: nowrap;
+  background: rgba(21,18,34,.74); border: 1px solid rgba(173,145,255,.24); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px -24px rgba(0,0,0,.9); translate: calc(var(--mx, 0) * var(--d) * 1px) calc(var(--my, 0) * var(--d) * 1px);
+  transition: translate .6s var(--ease); animation: popIn .9s cubic-bezier(.2,.9,.3,1.3) both; }
+.fc .k { display: block; margin-bottom: 4px; color: var(--v); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fc .o { color: var(--muted); }
+.fc .o::before { content: "✦ "; color: var(--v); }
+.fc1 { left: -2%; top: 10%; --d: -26; animation-delay: 1.5s; }
+.fc2 { right: -7%; top: 60%; --d: 34; animation-delay: 1.75s; }
+.fc3 { left: -3%; bottom: 8%; --d: -18; animation-delay: 2s; }
+@keyframes popIn { from { opacity: 0; transform: scale(.85) translateY(12px); } to { opacity: 1; transform: none; } }
+.scroll-hint { position: absolute; z-index: 2; left: 50%; bottom: 26px; translate: -50% 0; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);
+  display: flex; flex-direction: column; align-items: center; gap: 8px; animation: fadeUp 1s var(--ease) 1.6s both; }
+.scroll-hint i { width: 22px; height: 34px; border-radius: 12px; border: 1.5px solid rgba(173,145,255,.4); position: relative; }
+.scroll-hint i::after { content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--v); animation: wheel 1.8s ease-in-out infinite; }
+@keyframes wheel { 0% { opacity: 0; transform: translateY(-3px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(10px); } }
+@media (max-width: 900px) {
+  .hero { padding-top: 96px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); text-align: center; gap: 8px; }
+  .hero-visual { order: -1; height: min(86vw, 400px); }
+  .lede { margin-inline: auto; }
+  .cta-row, .ticks { justify-content: center; }
+  .scroll-hint { display: none; }
+}
+@media (max-width: 600px) { .fc { display: none; } .cta-row .btn { flex: 1 1 100%; } }
+
+/* old way vs wisp */
+.versus { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 26px; align-items: stretch; padding: 30px 0 110px; }
+.vs-card { border-radius: 28px; padding: 34px 34px 36px; border: 1px solid var(--line); background: var(--card); }
+.vs-label { margin: 0 0 20px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.vs-card.old ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 13px; counter-reset: s; }
+.vs-card.old li { counter-increment: s; display: flex; gap: 14px; align-items: center; color: var(--muted); font-size: 17px; }
+.vs-card.old li::before { content: counter(s); flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.06); font-size: 13px; font-weight: 700; color: var(--dim); }
+.vs-card.old li span { position: relative; }
+.vs-card.old li span::after { content: ""; position: absolute; left: -4px; right: -4px; top: 54%; height: 2px; border-radius: 2px; background: #ff5c7a;
+  transform: scaleX(0); transform-origin: left; transition: transform .45s cubic-bezier(.6,0,.2,1); transition-delay: calc(var(--i) * .16s + .35s); }
+.versus.in .vs-card.old li span::after { transform: scaleX(1); }
+.vs-card.old small { color: var(--dim); }
+.vs-mid { align-self: center; font: italic 400 46px/1 var(--serif); color: var(--dim); }
+.vs-card.new { display: flex; flex-direction: column; justify-content: center; border-color: rgba(173,145,255,.38);
+  background: radial-gradient(120% 120% at 100% 0%, rgba(123,92,255,.26), transparent 60%), rgba(255,255,255,.04); box-shadow: 0 40px 100px -50px rgba(123,92,255,.6); }
+.vs-card.new .vs-label { color: var(--v); }
+.combo { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 26px; margin: 4px 0 22px; }
+.combo kbd { font-size: 24px; padding: .34em .62em .38em; border-radius: 12px; }
+.combo .plus { color: var(--dim); font-weight: 600; }
+.vs-card.new p { margin: 0; color: var(--muted); font-size: 17px; max-width: 420px; }
+.vs-card.new p strong { color: var(--ink); }
+@media (max-width: 860px) { .versus { grid-template-columns: minmax(0, 1fr); } .vs-mid { justify-self: center; font-size: 34px; } }
+
+/* how it works: the 3D laptop */
+.how { padding: 40px 0 80px; overflow-x: clip; }
+.how.pinned { height: 290vh; padding: 0; }
+.how.pinned .how-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; }
+.how-grid { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: 36px; align-items: center; width: min(1240px, 100% - 32px); margin-inline: auto; }
+.how-copy .h2 { font-size: clamp(34px, 4.2vw, 54px); }
+.steps { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 8px; }
+.steps li { display: flex; gap: 16px; padding: 16px 18px; border-radius: 18px; border: 1px solid transparent; opacity: .42; transition: opacity .4s, background .4s, border-color .4s; }
+.steps li.on { opacity: 1; background: rgba(173,145,255,.07); border-color: rgba(173,145,255,.22); }
+.steps .n { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(173,145,255,.14); color: var(--v); font-weight: 800; transition: all .4s; }
+.steps li.on .n { background: var(--v); color: #140f25; box-shadow: 0 0 26px rgba(173,145,255,.65); }
+.steps b { display: block; font-size: 18px; letter-spacing: -.01em; }
+.steps p { margin: 4px 0 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.now-mode { margin: 20px 0 0 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--dim); font-size: 14px; min-height: 30px; }
+.now-mode .m { color: var(--ink); font-weight: 600; }
+.mac-fit { container-type: inline-size; width: 100%; max-width: min(880px, calc((100vh - 100px) / .84)); margin-inline: auto; }
+.mac-stage { --u: 1cqi; position: relative; height: calc(var(--u) * 84); perspective: calc(var(--u) * 250); perspective-origin: 50% 32%; }
+.mac-glow { position: absolute; left: 50%; top: 42%; width: calc(var(--u) * 100); height: calc(var(--u) * 70); translate: -50% -50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(123,92,255,.38), transparent); opacity: var(--on, 0); }
+.mac { position: absolute; left: calc(var(--u) * 10); top: calc(var(--u) * 1.5); width: calc(var(--u) * 80); height: calc(var(--u) * 50); transform-style: preserve-3d; transform-origin: 50% 100%;
+  transform: translateY(calc(var(--u) * var(--ty, 0))) rotateX(calc(var(--rx, -20) * 1deg)) rotateY(calc(var(--ry, 0) * 1deg)) scale(var(--sc, 1)); }
+.lid { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 100%; transform: rotateX(calc(var(--lid, 12) * 1deg)); }
+.lid-front, .lid-back { position: absolute; inset: 0; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  border-radius: calc(var(--u) * 2.2) calc(var(--u) * 2.2) calc(var(--u) * .6) calc(var(--u) * .6); }
+.lid-front { background: #050507; box-shadow: inset 0 0 0 calc(var(--u) * .2) #3b3d45; }
+.lid-back { transform: translateZ(calc(var(--u) * -.55)) rotateY(180deg); background: linear-gradient(160deg, #4b4d57, #30323a 55%, #25272e);
+  box-shadow: inset 0 0 0 calc(var(--u) * .16) rgba(255,255,255,.14); display: grid; place-items: center; }
+.lid-back svg { width: calc(var(--u) * 11); height: calc(var(--u) * 11); filter: drop-shadow(0 0 calc(var(--u) * 1.5) rgba(173,145,255,.9)); }
+.lid-edge { position: absolute; left: calc(var(--u) * .4); right: calc(var(--u) * .4); top: 0; height: calc(var(--u) * .55); transform-origin: 50% 0;
+  transform: translateZ(calc(var(--u) * -.55)) rotateX(90deg); background: linear-gradient(#686b76, #3c3e46); }
+.screen { position: absolute; left: calc(var(--u) * 1.25); right: calc(var(--u) * 1.25); top: calc(var(--u) * 1.25); bottom: calc(var(--u) * 2.3);
+  border-radius: calc(var(--u) * 1.2) calc(var(--u) * 1.2) calc(var(--u) * .2) calc(var(--u) * .2); overflow: hidden; font-size: calc(var(--u) * 1.3); line-height: 1.4; color: #1d1b24; background: #0c0b12; }
+.screen-off { position: absolute; inset: 0; z-index: 30; background: #030305; opacity: calc(1 - var(--on, 0)); pointer-events: none; }
+.glare { position: absolute; inset: 0; z-index: 31; pointer-events: none; background: linear-gradient(118deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,0) 40%); }
+.base { position: absolute; left: 0; top: 100%; width: 100%; height: calc(var(--u) * 54); transform-origin: 50% 0; transform: rotateX(90deg); transform-style: preserve-3d;
+  background: linear-gradient(180deg, #3b3d45, #2d2f36); border-radius: calc(var(--u) * .5) calc(var(--u) * .5) calc(var(--u) * 2.6) calc(var(--u) * 2.6);
+  box-shadow: inset 0 0 0 calc(var(--u) * .16) rgba(255,255,255,.1); }
+.base::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(var(--u) * 2.2); background: linear-gradient(rgba(0,0,0,.45), transparent); border-radius: inherit; }
+.base-front { position: absolute; left: calc(var(--u) * 1.2); right: calc(var(--u) * 1.2); top: 100%; height: calc(var(--u) * 1.5); transform-origin: 50% 0; transform: rotateX(-90deg);
+  background: linear-gradient(90deg, #2a2c32, #50535c 20%, #5a5d67 50%, #50535c 80%, #2a2c32); }
+.base-front::after { content: ""; position: absolute; left: 50%; top: 0; width: calc(var(--u) * 9); height: 45%; translate: -50% 0; border-radius: 0 0 calc(var(--u) * 1) calc(var(--u) * 1); background: rgba(0,0,0,.35); }
+.base-side { position: absolute; top: calc(var(--u) * .6); bottom: calc(var(--u) * 2.2); width: calc(var(--u) * 1.5); transform-origin: 0 50%; transform: rotateY(90deg);
+  background: linear-gradient(#484b54, #33353c); -webkit-backface-visibility: visible; backface-visibility: visible; }
+.base-side.l { left: 0; }
+.base-side.r { left: 100%; }
+.mac-shadow { position: absolute; left: calc(var(--u) * -9); right: calc(var(--u) * -9); top: calc(var(--u) * -6); bottom: calc(var(--u) * -10); transform: translateZ(calc(var(--u) * -2.4));
+  background: radial-gradient(closest-side, rgba(0,0,0,.6), rgba(0,0,0,.25) 60%, transparent); pointer-events: none; }
+.kb { position: absolute; left: calc(var(--u) * 5.5); right: calc(var(--u) * 5.5); top: calc(var(--u) * 3.2); display: flex; flex-direction: column; gap: calc(var(--u) * .32);
+  padding: calc(var(--u) * .45); border-radius: calc(var(--u) * .8); background: #141519; box-shadow: inset 0 calc(var(--u) * .1) calc(var(--u) * .3) rgba(0,0,0,.6); }
+.kr { display: flex; gap: calc(var(--u) * .32); height: calc(var(--u) * 3.9); }
+.kr.fnrow { height: calc(var(--u) * 2); }
+.key { flex: var(--w, 1) 1 0; min-width: 0; position: relative; border-radius: calc(var(--u) * .42); background: linear-gradient(#202127, #15161a);
+  box-shadow: inset 0 calc(var(--u) * .08) 0 rgba(255,255,255,.07), 0 calc(var(--u) * .12) 0 rgba(0,0,0,.55); color: #b7b9c3;
+  font: 500 calc(var(--u) * .6)/1 var(--font); display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
+  padding: calc(var(--u) * .38) calc(var(--u) * .45); white-space: nowrap; overflow: hidden; transition: background .18s, box-shadow .18s, color .18s, transform .18s; }
+.key.c { align-items: center; justify-content: center; font-size: calc(var(--u) * .95); }
+.key.s { align-items: center; justify-content: center; font-size: calc(var(--u) * .5); color: #8d8f99; }
+.key.r { align-items: flex-end; }
+.key.hot { background: linear-gradient(#b39dff, #7b5cff); color: #fff; transform: scale(.93);
+  box-shadow: 0 0 calc(var(--u) * 1.4) rgba(150,120,255,1), 0 0 calc(var(--u) * 4.5) rgba(123,92,255,.6), inset 0 calc(var(--u) * .08) 0 rgba(255,255,255,.4); }
+.arrows { flex: var(--w) 1 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: calc(var(--u) * .2); }
+.arrows .key { padding: 0; }
+.arrows .key:nth-child(1) { grid-column: 2; grid-row: 1; }
+.arrows .key:nth-child(2) { grid-column: 1; grid-row: 2; }
+.arrows .key:nth-child(3) { grid-column: 2; grid-row: 2; }
+.arrows .key:nth-child(4) { grid-column: 3; grid-row: 2; }
+.pad { position: absolute; left: 50%; translate: -50% 0; width: calc(var(--u) * 31); top: calc(var(--u) * 30.6); height: calc(var(--u) * 17.4); border-radius: calc(var(--u) * 1.3);
+  background: linear-gradient(#383a42, #30323a); box-shadow: inset 0 0 0 calc(var(--u) * .12) rgba(255,255,255,.1), inset 0 calc(var(--u) * .2) calc(var(--u) * .7) rgba(0,0,0,.3); }
+
+/* the Mac's screen */
+.wall { position: absolute; inset: 0; background: radial-gradient(80% 90% at 18% 8%, #6d55dc 0%, transparent 60%), radial-gradient(70% 80% at 92% 100%, #d77cb8 0%, transparent 55%), linear-gradient(160deg, #2b2566, #161234 70%); }
+.menubar { position: absolute; left: 0; right: 0; top: 0; height: 2.1em; z-index: 5; display: flex; align-items: center; gap: 1.2em; padding: 0 1.1em; color: #fff; font-size: .8em;
+  background: rgba(22,18,44,.4); }
+.menubar b { font-weight: 700; }
+.menubar .mb-r { margin-left: auto; display: flex; gap: 1em; align-items: center; }
+.menubar .mb-r svg { width: 1.15em; height: 1.15em; }
+.batt { width: 1.9em; height: .9em; border: .09em solid rgba(255,255,255,.85); border-radius: .25em; position: relative; }
+.batt::before { content: ""; position: absolute; inset: .12em; right: .35em; background: #fff; border-radius: .1em; }
+.notch { position: absolute; top: 0; left: 50%; z-index: 6; width: 7.6em; height: 1.68em; translate: -50% 0; background: #000; border-radius: 0 0 .75em .75em; }
+.win { position: absolute; left: 3.5%; top: 9%; width: 60%; height: 76%; z-index: 2; display: flex; flex-direction: column; overflow: hidden; background: #fbfaf8; border-radius: .9em;
+  box-shadow: 0 1.8em 4em rgba(0,0,0,.45), 0 0 0 .07em rgba(0,0,0,.28); transition: opacity .45s, transform .5s var(--ease), background .3s, color .3s; }
+.win.dark { background: #16151d; color: #e7e5ef; }
+.win.swap { opacity: 0; transform: translateY(.8em) scale(.985); }
+.win-bar { flex: none; height: 2.4em; display: flex; align-items: center; gap: .5em; padding: 0 .9em; font-size: .9em; border-bottom: .07em solid rgba(0,0,0,.08); background: rgba(0,0,0,.025); }
+.win.dark .win-bar { border-color: rgba(255,255,255,.07); background: rgba(255,255,255,.03); }
+.tl { width: .95em; height: .95em; border-radius: 50%; background: #ff5f57; }
+.tl.y { background: #febc2e; }
+.tl.g { background: #28c840; }
+.win-title { flex: 1; text-align: center; margin-right: 3.4em; color: #6b6975; font-weight: 600; }
+.win.dark .win-title { color: #8c889c; }
+.win-body { flex: 1; padding: 1.3em 1.6em; font-size: 1em; line-height: 1.55; overflow: hidden; }
+.doc .kick { font-size: .66em; letter-spacing: .13em; text-transform: uppercase; color: #8a8797; font-weight: 700; }
+.doc h4 { font-size: 1.45em; margin: .25em 0 .55em; letter-spacing: -.02em; color: #17151f; }
+.doc p { margin: 0 0 .75em; color: #3c3a46; }
+.doc .q { font-weight: 600; color: #17151f; }
+.term { font-family: var(--mono); font-size: .86em; line-height: 1.65; color: #d7d4e6; }
+.term .pr { color: #8fdc9f; }
+.term .er { color: #ff7c8c; }
+.term .caret { display: inline-block; width: .55em; height: 1.1em; vertical-align: -.2em; background: #d7d4e6; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.dock { position: absolute; left: 50%; bottom: 1.6%; translate: -50% 0; z-index: 3; display: flex; gap: .5em; padding: .45em .55em; border-radius: 1.2em;
+  background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 .06em rgba(255,255,255,.25); }
+.dock i { width: 2em; height: 2em; border-radius: .6em; background: var(--g); box-shadow: 0 .2em .5em rgba(0,0,0,.25); }
+.dock img { width: 2em; height: 2em; border-radius: .6em; }
+.dimmer { position: absolute; inset: 0; z-index: 8; background: rgba(12,8,30,.3); opacity: 0; transition: opacity .3s; }
+.dimmer.on { opacity: 1; }
+.sel { position: absolute; z-index: 9; left: 0; top: 0; width: 0; height: 0; opacity: 0; border: .14em dashed #9277ff; border-radius: .3em; background: rgba(123,92,255,.14);
+  transition: width .9s cubic-bezier(.45,.05,.3,1), height .9s cubic-bezier(.45,.05,.3,1), opacity .3s; }
+.sel.flash { animation: selFlash .6s ease-out; }
+@keyframes selFlash { 0% { box-shadow: 0 0 0 0 rgba(173,145,255,.9); } 100% { box-shadow: 0 0 0 1.4em rgba(173,145,255,0); } }
+.wpanel { position: absolute; z-index: 10; width: 20em; left: 0; top: 0; overflow: hidden; background: #17151f; color: #fff; border-radius: 1.15em; border: .07em solid rgba(173,145,255,.32);
+  box-shadow: 0 2em 5em rgba(0,0,0,.55), 0 0 3em rgba(123,92,255,.28); opacity: 0; transform: scale(.9) translateY(.6em); transform-origin: 0 0;
+  transition: opacity .35s, transform .5s cubic-bezier(.2,.9,.3,1.25); font-size: 1em; }
+.wpanel.on { opacity: 1; transform: none; }
+.wp-head { display: flex; align-items: center; gap: .45em; padding: .85em 1.1em; font: 700 1.02em/1 ui-rounded, var(--font); }
+.wp-head svg { width: 1.1em; height: 1.1em; color: #ad91ff; }
+.wp-head .ics { margin-left: auto; display: flex; gap: .85em; opacity: .5; font-size: .82em; font-weight: 500; }
+.wp-modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: .2em; padding: .55em .65em; border-top: .06em solid rgba(255,255,255,.06); border-bottom: .06em solid rgba(255,255,255,.06); }
+.wp-modes span { font-size: .7em; text-align: center; padding: .5em .2em; border-radius: .5em; color: #a7a2bd; }
+.wp-modes span.on { background: rgba(173,145,255,.2); color: #ad91ff; }
+.wp-body { padding: 1em 1.2em 1.1em; min-height: 6.2em; font-size: 1.02em; line-height: 1.5; }
+.wp-body code { font-family: var(--mono); font-size: .88em; color: #d6c9ff; background: rgba(173,145,255,.12); padding: .05em .3em; border-radius: .3em; }
+.wp-body .working { color: #a7a2bd; display: inline-flex; align-items: center; gap: .6em; }
+.spin { width: 1em; height: 1em; border-radius: 50%; border: .14em solid rgba(173,145,255,.25); border-top-color: #ad91ff; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.tcaret { display: inline-block; width: .08em; height: 1.05em; margin-left: .06em; vertical-align: -.15em; background: #ad91ff; animation: blink .9s steps(1) infinite; }
+.wp-foot { padding: .85em 1.1em; border-top: .06em solid rgba(255,255,255,.06); font: 500 .56em/1 var(--mono); letter-spacing: .04em; color: #8d88a6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud { position: absolute; left: 50%; bottom: 14%; z-index: 12; display: flex; gap: .45em; padding: .7em .85em; border-radius: 1em; background: rgba(15,12,26,.78); border: .07em solid rgba(173,145,255,.35);
+  opacity: 0; transform: translateX(-50%) translateY(.8em) scale(.96); transition: opacity .3s, transform .4s var(--ease); }
+.hud.on { opacity: 1; transform: translateX(-50%); }
+.hud kbd { font-size: 1.45em; transition: transform .12s, background .12s, box-shadow .12s; }
+.hud.down kbd { transform: translateY(.1em); background: linear-gradient(#a58bff, #7b5cff); box-shadow: 0 0 1.2em rgba(123,92,255,.9); border-color: transparent; }
+.cur { position: absolute; left: 0; top: 0; z-index: 14; width: 1.7em; height: 1.7em; pointer-events: none; transform: translate(40em, 24em);
+  transition: transform .8s cubic-bezier(.45,.05,.3,1); filter: drop-shadow(0 .15em .25em rgba(0,0,0,.4)); }
+.cur svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.cur .cross { opacity: 0; left: -.85em; top: -.85em; }
+.cur.x .arrow { opacity: 0; }
+.cur.x .cross { opacity: 1; }
+.demo-cap { display: none; }
+@media (max-width: 900px) {
+  .how-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .how-copy { text-align: center; }
+  .how-copy .steps, .now-mode { display: none; }
+  .demo-cap { display: block; margin: 6px auto 0; max-width: 520px; min-height: 96px; padding: 14px 16px; border-radius: 16px; background: rgba(23,21,31,.8);
+    border: 1px solid rgba(173,145,255,.25); font-size: 15px; line-height: 1.45; }
+  .demo-cap .st { display: flex; align-items: center; gap: 8px; color: var(--v); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .demo-cap code { font-family: var(--mono); font-size: .9em; color: var(--v3); }
+}
+
+/* modes */
+.modes-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.mode-card.wide { grid-column: span 2; }
+@media (max-width: 1040px) { .modes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 580px) { .modes-grid { grid-template-columns: minmax(0, 1fr); } .mode-card.wide { grid-column: auto; } .card { padding: 22px; } }
+.tilt { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .6s var(--ease), border-color .3s; }
+.tilt.active { transition: transform .1s linear, border-color .3s; }
+.card { position: relative; border-radius: 24px; padding: 26px; background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)); border: 1px solid var(--line); }
+.card:hover { border-color: rgba(173,145,255,.38); }
+.glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(173,145,255,.17), transparent 45%); }
+.card .glare { position: absolute; z-index: 0; }
+.tilt:hover .glare { opacity: 1; }
+.pop { transform: translateZ(34px); }
+.mode-ic { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; background: rgba(173,145,255,.12); border: 1px solid rgba(173,145,255,.26); color: var(--v); }
+.mode-ic svg { width: 23px; height: 23px; }
+.mode-card h3 { margin: 18px 0 6px; font-size: 21px; letter-spacing: -.02em; display: flex; align-items: center; gap: 10px; }
+.mode-card h3 kbd { margin-left: auto; font-size: 12.5px; }
+.mode-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.ex { margin-top: 18px; border-radius: 14px; background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.06); padding: 12px 14px; font-size: 13.5px; line-height: 1.45; }
+.ex .in { color: var(--dim); }
+.ex .out { color: var(--ink); margin-top: 6px; }
+.ex .out::before { content: "✦ "; color: var(--v); }
+.auto-demo { margin-top: 18px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.auto-row { display: flex; align-items: center; gap: 10px; font-size: 13.5px; padding: 9px 12px; border-radius: 12px; background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.06); }
+.auto-row .a { color: var(--dim); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.auto-row .arr { color: var(--v); }
+.auto-row .b { flex: none; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--v); background: rgba(173,145,255,.13); padding: 4px 9px; border-radius: 999px; }
+.extras { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+@media (max-width: 1040px) { .extras { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 580px) { .extras { grid-template-columns: minmax(0, 1fr); } }
+.extra { padding: 20px; border-radius: 20px; border: 1px solid var(--line); background: rgba(255,255,255,.025); }
+.extra svg { width: 22px; height: 22px; color: var(--v); }
+.extra b { display: block; margin: 12px 0 4px; font-size: 16px; letter-spacing: -.01em; }
+.extra p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+/* 3D ring */
+.ring-stage { --cw: 196px; --chh: 188px; position: relative; height: 470px; perspective: 1150px; perspective-origin: 50% 38%; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.ring-stage:active { cursor: grabbing; }
+.ring-floor { position: absolute; left: 50%; top: 66%; width: 900px; height: 220px; translate: -50% 0; background: radial-gradient(closest-side, rgba(123,92,255,.3), transparent); pointer-events: none; }
+.ring { position: absolute; left: 50%; top: 44%; transform-style: preserve-3d; transform: rotateX(-9deg); }
+.rc { position: absolute; left: calc(var(--cw) / -2); top: calc(var(--chh) / -2); width: var(--cw); height: var(--chh); border-radius: 22px; padding: 18px;
+  display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(160deg, rgba(44,36,74,.95), rgba(19,16,32,.95));
+  border: 1px solid rgba(173,145,255,.3); box-shadow: 0 30px 60px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08); }
+.rc .emo { font-size: 42px; line-height: 1; }
+.rc b { display: block; font-size: 17.5px; letter-spacing: -.015em; }
+.rc small { display: block; color: var(--muted); font-size: 12.5px; line-height: 1.35; margin-top: 4px; }
+.drag-hint { text-align: center; color: var(--dim); font-size: 13px; margin-top: -10px; }
+@media (max-width: 700px) { .ring-stage { --cw: 150px; --chh: 158px; height: 380px; perspective: 900px; } .rc .emo { font-size: 34px; } .rc b { font-size: 15.5px; } .rc small { font-size: 11.5px; } }
+
+/* AI providers */
+.ai-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 1040px) { .ai-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 580px) { .ai-grid { grid-template-columns: minmax(0, 1fr); } }
+.ai-card .top { display: flex; align-items: center; justify-content: space-between; }
+.mono { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-weight: 800; font-size: 20px; letter-spacing: -.03em; color: #fff; background: var(--g); box-shadow: 0 14px 30px -14px var(--gs, rgba(0,0,0,.6)); }
+.badge { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(173,145,255,.14); color: var(--v); }
+.badge.green { background: rgba(88,214,141,.12); color: #74e3a6; }
+.ai-card h3 { margin: 18px 0 6px; font-size: 21px; letter-spacing: -.02em; }
+.ai-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.ai-note { margin: 22px auto 0; text-align: center; color: var(--muted); font-size: 15.5px; max-width: 680px; }
+
+/* privacy */
+.priv { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+@media (max-width: 900px) { .priv { grid-template-columns: 1fr; gap: 36px; } }
+.spot { position: relative; aspect-ratio: 16 / 10.5; border-radius: 26px; overflow: hidden; border: 1px solid var(--line); background: #efedf6; box-shadow: 0 50px 120px -60px rgba(123,92,255,.7); }
+.spot .pg { position: absolute; inset: 7% 8%; display: grid; gap: 4.2%; align-content: start; }
+.spot .pg i { display: block; height: 7px; border-radius: 4px; background: #cfcbe0; }
+.spot .pg i.h { height: 16px; width: 55%; background: #b9b3d3; margin-bottom: 3%; }
+.spot .pg i.box { height: 70px; border-radius: 10px; background: linear-gradient(90deg, #d9c9ff, #c4e3ff); }
+.hole { position: absolute; border: 2px dashed #9b80ff; border-radius: 10px; box-shadow: 0 0 0 3000px rgba(7,6,12,.8); animation: holeMove 10s ease-in-out infinite; }
+.hole span { position: absolute; left: -2px; bottom: calc(100% + 8px); white-space: nowrap; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: #140f25; background: var(--v); padding: 5px 10px; border-radius: 999px; }
+@keyframes holeMove {
+  0%, 100% { left: 12%; top: 26%; width: 46%; height: 20%; }
+  33% { left: 44%; top: 50%; width: 42%; height: 28%; }
+  66% { left: 16%; top: 62%; width: 34%; height: 22%; }
+}
+.priv-list { display: grid; gap: 22px; margin-top: 34px; }
+.pi { display: flex; gap: 16px; }
+.pi .ic { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(173,145,255,.1); border: 1px solid rgba(173,145,255,.24); color: var(--v); }
+.pi .ic svg { width: 20px; height: 20px; }
+.pi b { display: block; font-size: 17px; letter-spacing: -.01em; }
+.pi p { margin: 3px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+/* pricing */
+.price-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 920px; margin-inline: auto; align-items: stretch; }
+@media (max-width: 760px) { .price-grid { grid-template-columns: minmax(0, 1fr); } .pcard { padding: 28px 22px; } }
+.pcard { position: relative; display: flex; flex-direction: column; padding: 34px; border-radius: 28px; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
+.pcard.best { border-color: transparent; background: linear-gradient(180deg, rgba(123,92,255,.2), rgba(255,255,255,.03) 60%); box-shadow: 0 50px 120px -60px rgba(123,92,255,.9); }
+@property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.pcard.best::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: conic-gradient(from var(--ang), #7b5cff, #e2d8ff, #ad91ff, #4d2fd1, #7b5cff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: ang 5s linear infinite; }
+@keyframes ang { to { --ang: 360deg; } }
+.ptag { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 11px; border-radius: 999px; background: rgba(255,255,255,.07); color: var(--muted); }
+.best .ptag { background: var(--v); color: #140f25; }
+.pcard h3 { margin: 20px 0 0; font-size: 20px; letter-spacing: -.01em; }
+.amount { font-size: 70px; font-weight: 800; letter-spacing: -.055em; line-height: 1; margin: 12px 0 6px; }
+.amount small { font-size: 18px; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+.pnote { color: var(--muted); font-size: 15px; margin: 0; }
+.pcard ul { list-style: none; padding: 0; margin: 24px 0 28px; display: grid; gap: 11px; color: #dcd8ee; font-size: 15.5px; }
+.pcard li { display: flex; gap: 11px; align-items: flex-start; }
+.pcard li::before { content: "✓"; flex: none; width: 20px; height: 20px; margin-top: 1px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 800; background: rgba(173,145,255,.16); color: var(--v); }
+.pcard .btn { margin-top: auto; width: 100%; }
+.pcard ul { flex: 1; }
+.coupon { margin: -10px 0 18px; display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 14px; border-radius: 14px; border: 1.5px dashed rgba(173,145,255,.45); font-size: 14px; color: var(--muted); }
+.coupon code { font: 700 15px var(--mono); color: var(--v); }
+.coupon button { margin-left: auto; font: 600 13px var(--font); color: var(--ink); background: rgba(173,145,255,.16); border: 1px solid rgba(173,145,255,.3); border-radius: 999px; padding: 7px 13px; cursor: pointer; }
+.coupon button:hover { background: rgba(173,145,255,.26); }
+.fine { text-align: center; color: var(--dim); font-size: 14.5px; margin: 28px auto 0; max-width: 720px; }
+.phone-note { display: none; }
+@media (hover: none) and (pointer: coarse) { .phone-note { display: block; } }
+
+/* faq */
+.faq { max-width: 800px; margin-inline: auto; display: grid; gap: 10px; }
+.faq details { border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.025); transition: background .3s, border-color .3s; }
+.faq details[open] { background: rgba(173,145,255,.06); border-color: rgba(173,145,255,.3); }
+.faq summary { list-style: none; cursor: pointer; padding: 20px 22px; font-weight: 650; font-size: 17px; display: flex; align-items: center; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; margin-left: auto; font-size: 26px; font-weight: 300; line-height: 1; color: var(--v); transition: transform .3s var(--ease); }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq .a { padding: 0 22px 20px; color: var(--muted); font-size: 15.5px; }
+.faq .a p { margin: 0; }
+
+/* final call to action */
+.final { padding: 60px 0 130px; text-align: center; overflow: clip; }
+.final-visual { position: relative; height: 360px; max-width: 520px; margin: 0 auto; }
+.final-visual canvas { position: absolute; left: -15%; top: -15%; width: 130%; height: 130%; opacity: 0; transition: opacity 1.2s; }
+.final-visual.gl canvas { opacity: 1; }
+.final-visual .fallback-icon { width: 46%; }
+.final .h2 { font-size: clamp(40px, 6.6vw, 84px); }
+.final .cta-row { justify-content: center; animation: none; }
+footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 0 56px; color: var(--dim); font-size: 14px; }
+.foot { display: flex; gap: 20px 28px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.foot nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.foot nav a:hover { color: var(--ink); }
+.legal { margin-top: 18px; font-size: 12.5px; color: #5b5770; }
+
+/* reveal */
+.js .rv { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--d, 0) * 1ms); }
+.js .rv.in { opacity: 1; transform: none; }
+.js .tilt.rv.in { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+.js .tilt.rv.in.active { transition: transform .1s linear, border-color .3s; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .js .rv { opacity: 1; transform: none; }
+}
+:focus-visible { outline: 2px solid var(--v); outline-offset: 3px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Wisp home"><img src="icon.png" alt="" width="30" height="30"><span>wisp</span></a>
+  <nav class="links" aria-label="Sections">
+    <a href="#how">How it works</a><a href="#modes">Features</a><a href="#ai">AI</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary btn-sm" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp</a>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="floor" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <a class="chip" href="#pricing"><b>LAUNCH</b>$10 off lifetime for the first 10 people <span aria-hidden="true">→</span></a>
+      <h1 class="h1">
+        <span class="ln"><span class="w" style="--i:0">Highlight</span> <span class="w" style="--i:1">anything.</span></span>
+        <span class="ln"><span class="w" style="--i:2">Get</span> <span class="w" style="--i:3">the</span> <span class="w" style="--i:4">answer</span></span>
+        <span class="ln"><span class="w serif grad" style="--i:5">right</span> <span class="w serif grad" style="--i:6">there.</span></span>
+      </h1>
+      <p class="lede">Press <kbd>⇧⌘Space</kbd> and drag over anything on your Mac’s screen: notes, PDFs, videos, code, charts. Wisp <strong>answers, translates, summarizes or explains it</strong> without you ever leaving the app you’re in.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp" data-gumroad-overlay-checkout="true">Try 7 days free</a>
+      </div>
+      <ul class="ticks"><li>Works with a free Gemini key</li><li>Or 100% offline</li><li>macOS 14+ · Apple Silicon &amp; Intel</li></ul>
+    </div>
+    <div class="hero-visual" id="heroVisual">
+      <img class="fallback-icon" src="icon.png" alt="The Wisp app icon" width="330" height="330">
+      <canvas id="hero3d" aria-hidden="true"></canvas>
+      <div class="fc fc1" aria-hidden="true"><span class="k">Translate</span>¿Dónde está la biblioteca?<br><span class="o">Where is the library?</span></div>
+      <div class="fc fc2" aria-hidden="true"><span class="k">Explain</span>E = mc²<br><span class="o">Energy = mass × light speed²</span></div>
+      <div class="fc fc3" aria-hidden="true"><span class="k">Summarize</span>12-page reading<br><span class="o">4 short bullet points</span></div>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#versus" aria-label="Scroll down"><i></i></a>
+</section>
+
+<!-- OLD WAY VS WISP -->
+<section class="wrap versus rv" id="versus">
+  <div class="vs-card old">
+    <p class="vs-label">The old way</p>
+    <ol>
+      <li style="--i:0"><span>Select the text <small>(if you even can)</small></span></li>
+      <li style="--i:1"><span>Copy it</span></li>
+      <li style="--i:2"><span>Open a new tab</span></li>
+      <li style="--i:3"><span>Paste it into a chatbot</span></li>
+      <li style="--i:4"><span>Wait…</span></li>
+      <li style="--i:5"><span>Switch back to where you were</span></li>
+    </ol>
+  </div>
+  <div class="vs-mid" aria-hidden="true">vs</div>
+  <div class="vs-card new">
+    <p class="vs-label">With Wisp</p>
+    <div class="combo"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>Space</kbd><span class="plus">+ drag</span></div>
+    <p>The answer shows up <strong>right next to what you selected</strong>. No tabs, no copy-paste, no losing your place. It even works on text you can’t select, like a video or a screenshot.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS: 3D LAPTOP -->
+<section class="how" id="how">
+  <div class="how-sticky">
+    <div class="how-grid">
+      <div class="how-copy">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2">Three steps. <span class="serif grad">No copy-paste.</span></h2>
+        <ol class="steps">
+          <li class="on"><span class="n">1</span><div><b>Press the shortcut</b><p><kbd>⇧⌘Space</kbd> from any app, or a mode’s own shortcut like <kbd>⌃3</kbd> for Translate.</p></div></li>
+          <li><span class="n">2</span><div><b>Drag over anything</b><p>Text, a chart, a video frame, code, even text you can’t select.</p></div></li>
+          <li><span class="n">3</span><div><b>Get the answer right there</b><p>It pops up next to what you picked. Switch modes with one click.</p></div></li>
+        </ol>
+        <div class="now-mode" id="nowMode"></div>
+      </div>
+      <div>
+        <div class="mac-fit">
+          <div class="mac-stage" id="macStage">
+            <div class="mac-glow" aria-hidden="true"></div>
+            <div class="mac" id="mac" role="img" aria-label="A 3D laptop showing Wisp answering a question about highlighted text">
+              <div class="lid">
+                <div class="lid-front">
+                  <div class="screen" id="screen">
+                    <div class="wall"></div>
+                    <div class="menubar"><b id="appName">Preview</b><span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Window</span><span>Help</span>
+                      <span class="mb-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M12 7.5l1.2 3.3 3.3 1.2-3.3 1.2L12 16.5l-1.2-3.3L7.5 12l3.3-1.2z" fill="currentColor" stroke="none"/></svg><i class="batt"></i><span>Sat 9:41 AM</span></span></div>
+                    <div class="notch"></div>
+                    <div class="win" id="win">
+                      <div class="win-bar"><i class="tl"></i><i class="tl y"></i><i class="tl g"></i><span class="win-title" id="winTitle">Unit 4 – Cell Division.pdf</span></div>
+                      <div class="win-body" id="winBody"></div>
+                    </div>
+                    <div class="dock"><i style="--g:linear-gradient(135deg,#5ac8fa,#007aff)"></i><i style="--g:linear-gradient(135deg,#ffd60a,#ff9f0a)"></i><i style="--g:linear-gradient(135deg,#30d158,#0a8f3c)"></i><i style="--g:linear-gradient(135deg,#ff6482,#ff2d55)"></i><i style="--g:linear-gradient(135deg,#bf5af2,#5e5ce6)"></i><i style="--g:linear-gradient(135deg,#8e8e93,#48484a)"></i><img src="icon.png" alt=""></div>
+                    <div class="dimmer" id="dimmer"></div>
+                    <div class="sel" id="sel"></div>
+                    <div class="wpanel" id="wpanel">
+                      <div class="wp-head"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z" fill="currentColor"/><path d="M19 3l.6 1.6L21 5.2l-1.4.6L19 7.4l-.6-1.6L17 5.2l1.4-.6z" fill="currentColor"/></svg>wisp<span class="ics">✥ ◌ ⚙ – ✕</span></div>
+                      <div class="wp-modes" id="wpModes"><span data-m="Auto">Auto</span><span data-m="Answer">Answer</span><span data-m="Translate">Translate</span><span data-m="Summarize">Summarize</span><span data-m="Rewrite">Rewrite</span><span data-m="Explain">Explain</span><span data-m="Custom">Custom</span></div>
+                      <div class="wp-body" id="wpBody"></div>
+                      <div class="wp-foot" id="wpFoot">READY</div>
+                    </div>
+                    <div class="hud" id="hud"></div>
+                    <div class="cur" id="cur"><svg class="arrow" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.3-4.1 2.7 6.2 3-1.3-2.7-6.1H18z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg><svg class="cross" viewBox="0 0 24 24"><path d="M12 2v8M12 14v8M2 12h8M14 12h8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12 2v8M12 14v8M2 12h8M14 12h8" stroke="#111" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+                    <div class="screen-off"></div>
+                    <div class="glare"></div>
+                  </div>
+                </div>
+                <div class="lid-back"><svg viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M12 6.8l1.25 3.95 3.95 1.25-3.95 1.25L12 17.2l-1.25-3.95L6.8 12l3.95-1.25z" fill="#e4dbff" stroke="none"/></svg></div>
+                <div class="lid-edge"></div>
+              </div>
+              <div class="base">
+                <div class="mac-shadow"></div>
+                <div class="kb" id="kb"></div>
+                <div class="pad"></div>
+                <div class="base-front"></div>
+                <div class="base-side l"></div><div class="base-side r"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-cap" id="demoCap" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODES -->
+<section class="block" id="modes">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">One shortcut, seven modes</p>
+      <h2 class="h2">Not just answers. <span class="serif grad">Whatever you need.</span></h2>
+      <p class="sub">Every mode has its own shortcut, and you can switch modes right in the answer panel.</p>
+    </div>
+    <div class="modes-grid">
+      <article class="card tilt mode-card wide rv">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+          <h3>Auto <kbd>⇧⌘Space</kbd></h3>
+          <p>Not sure which mode? Wisp looks at what you selected and does the most useful thing.</p>
+          <div class="auto-demo">
+            <div class="auto-row"><span class="a">“What causes the seasons?”</span><span class="arr">→</span><span class="b">Answer</span></div>
+            <div class="auto-row"><span class="a">“Je voudrais un café, s’il vous plaît.”</span><span class="arr">→</span><span class="b">Translate</span></div>
+            <div class="auto-row"><span class="a">A 9-paragraph article about sleep</span><span class="arr">→</span><span class="b">Summarize</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="card tilt mode-card rv" style="--d:80">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></div>
+          <h3>Answer <kbd>⌃1</kbd></h3>
+          <p>The direct answer first, then a short why.</p>
+          <div class="ex"><div class="in">What’s the powerhouse of the cell?</div><div class="out">The mitochondrion. It makes most of the cell’s energy (ATP).</div></div>
+        </div>
+      </article>
+      <article class="card tilt mode-card rv" style="--d:160">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></div>
+          <h3>Translate <kbd>⌃3</kbd></h3>
+          <p>Any language into yours, keeping names and structure.</p>
+          <div class="ex"><div class="in">Merci beaucoup pour votre aide !</div><div class="out">Thank you so much for your help!</div></div>
+        </div>
+      </article>
+      <article class="card tilt mode-card rv">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg></div>
+          <h3>Summarize <kbd>⌃2</kbd></h3>
+          <p>Long text in at most four short bullet points.</p>
+          <div class="ex"><div class="in">A 12-page reading for Friday</div><div class="out">4 bullets you can actually remember</div></div>
+        </div>
+      </article>
+      <article class="card tilt mode-card rv" style="--d:80">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>Rewrite <kbd>⌃4</kbd></h3>
+          <p>Clear, natural and polished, in the same language.</p>
+          <div class="ex"><div class="in">me and him was going to the store</div><div class="out">He and I were going to the store.</div></div>
+        </div>
+      </article>
+      <article class="card tilt mode-card rv" style="--d:160">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></div>
+          <h3>Explain <kbd>⌃5</kbd></h3>
+          <p>Code, charts, diagrams and hard ideas, simply, with an example.</p>
+          <div class="ex"><div class="in">What does “opportunity cost” mean?</div><div class="out">What you give up to get something else. Studying tonight costs you the movie.</div></div>
+        </div>
+      </article>
+      <article class="card tilt mode-card rv" style="--d:240">
+        <div class="glare"></div>
+        <div class="pop">
+          <div class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
+          <h3>Custom <kbd>⌃6</kbd></h3>
+          <p>Your own instruction, one shortcut away.</p>
+          <div class="ex"><div class="in">“Make 3 flashcards from this”</div><div class="out">3 question-and-answer cards, ready to study</div></div>
+        </div>
+      </article>
+    </div>
+    <div class="extras">
+      <div class="extra rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z" opacity=".45"/><path d="M8 12.5c1.2 1.3 2.5 2 4 2s2.8-.7 4-2"/></svg><b>Invisible Ink</b><p>Answers appear as faint text that blends into your screen, with no window, and fade on their own.</p></div>
+      <div class="extra rv" style="--d:60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg><b>Quiet Mode</b><p>A calmer capture: a faint outline, no previews, no history.</p></div>
+      <div class="extra rv" style="--d:120"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3"/></svg><b>Put it anywhere</b><p>Drag the answer wherever you like. Wisp remembers the spot.</p></div>
+      <div class="extra rv" style="--d:180"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg><b>Your shortcuts</b><p>Change every single shortcut to whatever feels right.</p></div>
+      <div class="extra rv" style="--d:240"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4L21 8"/><path d="M21 3v5h-5"/></svg><b>Updates itself</b><p>New versions install in one click, and every update is signed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D RING: works on anything -->
+<section class="block" id="anywhere" style="padding-top:40px; overflow-x:clip">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Works everywhere</p>
+      <h2 class="h2">If you can see it, <span class="serif grad">Wisp can read it.</span></h2>
+      <p class="sub">Wisp reads the pixels you drag over, so it works in every app. Even text you can’t select.</p>
+    </div>
+  </div>
+  <div class="ring-stage" id="ringStage">
+    <div class="ring-floor" aria-hidden="true"></div>
+    <div class="ring" id="ring">
+      <div class="rc"><span class="emo">📊</span><div><b>Lecture slides</b><small>Explain a slide while the class moves on</small></div></div>
+      <div class="rc"><span class="emo">📄</span><div><b>Scanned PDFs</b><small>Even pages that are just a picture</small></div></div>
+      <div class="rc"><span class="emo">🎬</span><div><b>Videos</b><small>Pause and ask about any frame</small></div></div>
+      <div class="rc"><span class="emo">🐞</span><div><b>Code errors</b><small>What went wrong, and how to fix it</small></div></div>
+      <div class="rc"><span class="emo">📈</span><div><b>Charts</b><small>What the graph is really saying</small></div></div>
+      <div class="rc"><span class="emo">🌍</span><div><b>Other languages</b><small>Websites, menus, readings</small></div></div>
+      <div class="rc"><span class="emo">🖼️</span><div><b>Screenshots</b><small>Text inside any image</small></div></div>
+      <div class="rc"><span class="emo">🧮</span><div><b>Formulas</b><small>Step by step, in plain words</small></div></div>
+      <div class="rc"><span class="emo">✍️</span><div><b>Handwriting</b><small>Photos of your notes</small></div></div>
+      <div class="rc"><span class="emo">📧</span><div><b>Long emails</b><small>The point, in a few bullets</small></div></div>
+      <div class="rc"><span class="emo">🧬</span><div><b>Diagrams</b><small>Labels and processes, explained</small></div></div>
+      <div class="rc"><span class="emo">📚</span><div><b>Textbooks</b><small>Any page, any subject</small></div></div>
+    </div>
+  </div>
+  <p class="drag-hint">Drag to spin</p>
+</section>
+
+<!-- AI PROVIDERS -->
+<section class="block" id="ai" style="padding-top:60px">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Your AI, your choice</p>
+      <h2 class="h2">Bring your own brain. <span class="serif grad">Or go offline.</span></h2>
+      <p class="sub">Pick the AI behind Wisp and switch anytime in Settings.</p>
+    </div>
+    <div class="ai-grid">
+      <article class="card tilt ai-card rv"><div class="glare"></div><div class="pop">
+        <div class="top"><span class="mono" style="--g:linear-gradient(135deg,#4f8dff,#9b72ff);--gs:rgba(90,120,255,.7)">G</span><span class="badge">Free tier</span></div>
+        <h3>Google Gemini</h3><p>Paste a free key from Google AI Studio. If a model is busy, Wisp automatically tries your other Gemini models.</p></div></article>
+      <article class="card tilt ai-card rv" style="--d:80"><div class="glare"></div><div class="pop">
+        <div class="top"><span class="mono" style="--g:linear-gradient(135deg,#2b2b33,#50505c);--gs:rgba(0,0,0,.8)">O</span><span class="badge">Your key</span></div>
+        <h3>OpenAI</h3><p>Use your own OpenAI key. You only pay OpenAI for what you use.</p></div></article>
+      <article class="card tilt ai-card rv" style="--d:160"><div class="glare"></div><div class="pop">
+        <div class="top"><span class="mono" style="--g:linear-gradient(135deg,#f2f0ea,#bdb8ab);color:#1b1a20;--gs:rgba(255,255,255,.25)">🦙</span><span class="badge green">Offline</span></div>
+        <h3>Ollama</h3><p>Run a model on your own Mac. Nothing ever leaves your computer.</p></div></article>
+      <article class="card tilt ai-card rv" style="--d:240"><div class="glare"></div><div class="pop">
+        <div class="top"><span class="mono" style="--g:linear-gradient(135deg,#6d5dfc,#2f2a7a);--gs:rgba(109,93,252,.7)">LM</span><span class="badge green">Offline</span></div>
+        <h3>LM Studio</h3><p>Any local model, 100% on-device. Great for private notes.</p></div></article>
+    </div>
+    <p class="ai-note rv">Wisp has no servers of its own. What you select goes straight to the AI you picked, or nowhere at all with a local model.</p>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="block" id="privacy" style="padding-top:60px">
+  <div class="wrap priv">
+    <div class="spot rv" aria-hidden="true">
+      <div class="pg"><i class="h"></i><i></i><i style="width:92%"></i><i style="width:80%"></i><i class="box"></i><i></i><i style="width:88%"></i><i style="width:64%"></i><i></i><i style="width:74%"></i></div>
+      <div class="hole"><span>only this</span></div>
+    </div>
+    <div>
+      <div class="rv"><p class="eyebrow">Private by design</p>
+      <h2 class="h2">Only what you drag. <span class="serif grad">Nothing else.</span></h2></div>
+      <div class="priv-list">
+        <div class="pi rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg></span><div><b>Just your rectangle</b><p>Wisp captures only the area you drag, only when you press the shortcut. It never records your screen.</p></div></div>
+        <div class="pi rv" style="--d:80"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><div><b>Read on your Mac</b><p>Text is recognized on-device with Apple’s Vision framework. You can turn off image sending so only text goes out.</p></div></div>
+        <div class="pi rv" style="--d:160"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span><div><b>Keys in your Keychain</b><p>Your API keys are stored in the macOS Keychain, never in plain files.</p></div></div>
+        <div class="pi rv" style="--d:240"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>No tracking</b><p>No Wisp servers, no analytics, no ads. Captures and answers aren’t saved to disk.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" id="pricing" style="padding-top:60px">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="h2">Pay once. <span class="serif grad">Keep it forever.</span></h2>
+      <p class="sub">Or go monthly and try it free for a week. Both unlock the exact same app.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pcard best rv">
+        <span class="ptag">Best value</span>
+        <h3>Wisp Lifetime</h3>
+        <div class="amount">$15<small>one time</small></div>
+        <p class="pnote">No subscription. Yours forever.</p>
+        <ul>
+          <li>Every mode and feature</li>
+          <li>Every future update included</li>
+          <li>Use a free Gemini key, your OpenAI key, or offline models</li>
+          <li>License key emailed to you instantly</li>
+        </ul>
+        <div class="coupon"><span>Launch deal: <code>LAUNCH</code> = $10 off, first 10 people</span><button type="button" data-copy="LAUNCH">Copy</button></div>
+        <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp Lifetime</a>
+      </div>
+      <div class="pcard rv" style="--d:100">
+        <span class="ptag">Try it first</span>
+        <h3>Wisp Monthly</h3>
+        <div class="amount">$2.99<small>/ month</small></div>
+        <p class="pnote">7-day free trial · cancel anytime</p>
+        <ul>
+          <li>Try everything free for 7 days</li>
+          <li>Every mode, feature and update</li>
+          <li>Cancel anytime from your Gumroad library</li>
+          <li>Keeps working until the end of the time you paid for</li>
+        </ul>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp" data-gumroad-overlay-checkout="true">Start free trial</a>
+      </div>
+    </div>
+    <p class="fine rv">Checkout is handled securely by Gumroad (card, PayPal or Apple Pay). The AI itself is free with a Gemini key or a local model; OpenAI is pay-as-you-go on your own key. Needs macOS 14 or later, Apple Silicon or Intel.</p>
+    <p class="fine phone-note">On your phone? Buy now and download Wisp on your Mac later. The download link is in your email.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq" style="padding-top:40px">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Questions? <span class="serif grad">Answered.</span></h2>
+    </div>
+    <div class="faq">
+      <details class="rv"><summary>Do I have to pay for the AI too?</summary><div class="a"><p>No. Google Gemini has a free tier that works great with Wisp: you paste a free key from Google AI Studio and you’re done. You can also use your own OpenAI key (you pay OpenAI per use) or run a model completely offline with Ollama or LM Studio.</p></div></details>
+      <details class="rv"><summary>Why does macOS ask me to click “Open Anyway” the first time?</summary><div class="a"><p>Wisp isn’t in Apple’s paid developer program yet, so macOS asks you to confirm once: System Settings → Privacy &amp; Security → Open Anyway. It takes about 30 seconds and the steps come with your download. After that it opens like any other app.</p></div></details>
+      <details class="rv"><summary>What does Wisp see on my screen?</summary><div class="a"><p>Only the rectangle you drag, and only when you press the shortcut. It sends that picture plus the text it recognized on your Mac to the AI you picked, or to nobody if you use a local model. You can switch image sending off so only the text is sent.</p></div></details>
+      <details class="rv"><summary>Lifetime or monthly, which should I get?</summary><div class="a"><p>Lifetime is $15 once and yours forever, updates included. Monthly is $2.99 with a 7-day free trial, which is nice if you want to try it first. Both unlock the exact same app.</p></div></details>
+      <details class="rv"><summary>How do I set it up after buying?</summary><div class="a"><p>Gumroad emails you the download and a license key. Drag Wisp into Applications, open it, paste your license key and your AI key, and you’re set.</p></div></details>
+      <details class="rv"><summary>How do updates work?</summary><div class="a"><p>Wisp updates itself. When a new version is out it offers to install it in one click, and you can check anytime with “Check for Updates…” in the menu.</p></div></details>
+      <details class="rv"><summary>Which Macs does it work on?</summary><div class="a"><p>Any Mac running macOS 14 Sonoma or later, with Apple Silicon or Intel.</p></div></details>
+      <details class="rv"><summary>Can I change the shortcuts?</summary><div class="a"><p>Yes, every one. Capture is <kbd>⇧⌘Space</kbd> by default and each mode has its own shortcut, <kbd>⌃1</kbd> to <kbd>⌃6</kbd>.</p></div></details>
+      <details class="rv"><summary>Are the answers always right?</summary><div class="a"><p>AI can make mistakes, so double-check anything important. Wisp works best as a study buddy: use Explain to learn the why, not just the what.</p></div></details>
+      <details class="rv"><summary>I need help. Who do I talk to?</summary><div class="a"><p>Reply to your Gumroad receipt email and it comes straight to the developer.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="get">
+  <div class="final-visual" id="finalVisual">
+    <img class="fallback-icon" src="icon.png" alt="" width="240" height="240">
+    <canvas id="final3d" aria-hidden="true"></canvas>
+  </div>
+  <div class="wrap rv">
+    <h2 class="h2">Stop copy-pasting into AI.<br><span class="serif grad">Just highlight it.</span></h2>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+      <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp" data-gumroad-overlay-checkout="true">Try 7 days free</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="#top"><img src="icon.png" alt="" width="30" height="30"><span>wisp</span></a>
+      <nav aria-label="Footer">
+        <a href="https://gamingdude1.gumroad.com/l/wisp-lifetime">Buy</a>
+        <a href="https://gamingdude1.gumroad.com/l/wisp">Free trial</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://www.tiktok.com/@wispformac" rel="noopener">TikTok</a>
+      </nav>
+    </div>
+    <p class="legal">© 2026 Wisp. Wisp isn’t affiliated with Apple, Google, OpenAI, Ollama or LM Studio. Mac and macOS are trademarks of Apple Inc. AI answers can be wrong, so check anything important.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  window.__wisp = { px: 0, py: 0 };
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: .12 });
+  $$('.rv').forEach(el => io.observe(el));
+
+  // hero pointer parallax
+  const hero = $('.hero');
+  addEventListener('pointermove', e => {
+    const mx = e.clientX / innerWidth - .5, my = e.clientY / innerHeight - .5;
+    window.__wisp.px = mx; window.__wisp.py = my;
+    hero.style.setProperty('--mx', mx.toFixed(3)); hero.style.setProperty('--my', my.toFixed(3));
+  }, { passive: true });
+
+  // 3D tilt cards
+  if (fine && !reduce) $$('.tilt').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.setProperty('--ry', ((x - .5) * 12).toFixed(2) + 'deg'); el.style.setProperty('--rx', ((.5 - y) * 10).toFixed(2) + 'deg');
+      el.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+      el.classList.add('active');
+    });
+    el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); el.classList.remove('active'); });
+  });
+
+  // copy coupon
+  $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied!'; } catch { b.textContent = b.dataset.copy; }
+    setTimeout(() => b.textContent = 'Copy', 1600);
+  }));
+
+  // keyboard
+  const kb = $('#kb');
+  const letters = s => s.split(' ').map(c => [c, 1, 'c']);
+  const sym = { command: '⌘', option: '⌥', control: '⌃', shift: '⇧' };
+  const rows = [
+    ['fnrow', [['esc', 1.5, 'l'], ...Array.from({ length: 12 }, (_, i) => ['F' + (i + 1), 1, 's']), ['', 1, 's']]],
+    ['', [['`', 1, 'c'], ...letters('1 2 3 4 5 6 7 8 9 0'), ['-', 1, 'c'], ['=', 1, 'c'], ['delete', 1.5, 'r']]],
+    ['', [['tab', 1.5, 'l'], ...letters('Q W E R T Y U I O P'), ['[', 1, 'c'], [']', 1, 'c'], ['\\', 1, 'c']]],
+    ['', [['caps lock', 1.8, 'l'], ...letters('A S D F G H J K L'), [';', 1, 'c'], ["'", 1, 'c'], ['return', 1.7, 'r']]],
+    ['', [['shift', 2.35, 'l', 'shift'], ...letters('Z X C V B N M'), [',', 1, 'c'], ['.', 1, 'c'], ['/', 1, 'c'], ['shift', 2.15, 'r']]],
+    ['', [['fn', 1, 'l'], ['control', 1, 'l', 'ctrl'], ['option', 1, 'l'], ['command', 1.25, 'l', 'cmd'], ['', 5, 'l', 'space'], ['command', 1.25, 'r'], ['option', 1, 'r'], ['arrows', 3]]]
+  ];
+  kb.innerHTML = rows.map(([cls, keys]) => `<div class="kr ${cls}">` + keys.map(([lab, w, c, id]) => {
+    if (lab === 'arrows') return `<div class="arrows" style="--w:${w}"><span class="key s">▲</span><span class="key s">◀</span><span class="key s">▼</span><span class="key s">▶</span></div>`;
+    const k = id || (c === 'c' ? lab.toLowerCase() : '');
+    const text = sym[lab] ? `<span>${sym[lab]}</span><span>${lab}</span>` : lab;
+    return `<span class="key ${c}" style="--w:${w}"${k ? ` data-k="${k}"` : ''}>${text}</span>`;
+  }).join('') + '</div>').join('');
+
+  // the demo that plays on the laptop screen
+  const SCENES = [
+    { app: 'Preview', title: 'Unit 4 – Cell Division.pdf', mode: 'Auto', hud: ['⇧', '⌘', 'Space'], keys: ['shift', 'cmd', 'space'],
+      body: `<div class="doc"><div class="kick">Biology · Unit 4 notes</div><h4>Cell division</h4><p>Cells divide to grow, to repair tissue and to reproduce. There are two main types of cell division.</p><p class="q target">What’s the difference between mitosis and meiosis?</p><p>Review both before Friday’s lab.</p></div>`,
+      answer: '<b>Mitosis</b> makes 2 identical cells, for growth and repair. <b>Meiosis</b> makes 4 cells with half the chromosomes, which become eggs or sperm.',
+      status: 'GEMINI · AUTO · ANSWERED BY GEMINI-FLASH-LATEST' },
+    { app: 'Safari', title: 'Español 2 – Lectura 3', mode: 'Translate', hud: ['⌃', '3'], keys: ['ctrl', '3'],
+      body: `<div class="doc"><div class="kick">Español 2 · Lectura</div><h4>La fotosíntesis</h4><p class="target">Las plantas usan la luz del sol para convertir el agua y el dióxido de carbono en azúcar y oxígeno.</p><p>Este proceso ocurre en los cloroplastos de las hojas.</p></div>`,
+      answer: 'Plants use sunlight to turn water and carbon dioxide into sugar and oxygen.',
+      status: 'GEMINI · TRANSLATE · ANSWERED BY GEMINI-FLASH-LATEST' },
+    { app: 'Terminal', title: 'cs101 — zsh', mode: 'Explain', hud: ['⌃', '5'], keys: ['ctrl', '5'], dark: true,
+      body: `<div class="term"><div><span class="pr">~/cs101 %</span> python3 grades.py</div><div class="target"><div>Traceback (most recent call last):</div><div>&nbsp;&nbsp;File "grades.py", line 4, in &lt;module&gt;</div><div>&nbsp;&nbsp;&nbsp;&nbsp;average = total / len(scores)</div><div class="er">ZeroDivisionError: division by zero</div></div><div><span class="pr">~/cs101 %</span> <span class="caret"></span></div></div>`,
+      answer: 'The list <code>scores</code> is empty, so <code>len(scores)</code> is 0, and you can’t divide by zero. Check it first: <code>if scores:</code> then work out the average.',
+      status: 'GEMINI · EXPLAIN · ANSWERED BY GEMINI-FLASH-LATEST' },
+    { app: 'Notes', title: 'Study skills', mode: 'Summarize', hud: ['⌃', '2'], keys: ['ctrl', '2'],
+      body: `<div class="doc"><div class="kick">Study skills</div><h4>The Pomodoro Technique</h4><p class="target">The Pomodoro Technique breaks work into focused intervals. You pick one task and work on it for 25 minutes without distractions, then take a short 5-minute break. Each interval is called a “pomodoro.” After four pomodoros, you take a longer break of 15 to 30 minutes before starting again.</p></div>`,
+      answer: '• Work on one task for 25 focused minutes<br>• Take a 5-minute break after each one<br>• After four rounds, take a 15–30 minute break',
+      status: 'GEMINI · SUMMARIZE · ANSWERED BY GEMINI-FLASH-LATEST' }
+  ];
+  const scr = $('#screen'), win = $('#win'), wbody = $('#winBody'), wtitle = $('#winTitle'), appName = $('#appName'), dimmer = $('#dimmer'), sel = $('#sel'),
+    panel = $('#wpanel'), pbody = $('#wpBody'), pfoot = $('#wpFoot'), hud = $('#hud'), cur = $('#cur'), steps = $$('.steps li'), chips = $$('#wpModes span'),
+    nowMode = $('#nowMode'), cap = $('#demoCap');
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const tokenize = html => { const out = [], re = /(<[^>]+>|&[a-z#0-9]+;)/gi; let last = 0, m; while ((m = re.exec(html))) { out.push(...html.slice(last, m.index)); out.push(m[0]); last = re.lastIndex; } out.push(...html.slice(last)); return out; };
+  const boxIn = (el, root) => { let x = 0, y = 0, n = el; while (n && n !== root) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; } return { x, y, w: el.offsetWidth, h: el.offsetHeight }; };
+  const setKeys = (ids, on) => ids.forEach(k => $$(`.key[data-k="${k}"]`).forEach(el => el.classList.toggle('hot', on)));
+  const setStep = i => steps.forEach((li, j) => li.classList.toggle('on', j === i));
+  const moveCur = (x, y, ms) => { cur.style.transitionDuration = ms + 'ms'; cur.style.transform = `translate(${x}px, ${y}px)`; };
+  const capSet = (st, html) => { cap.innerHTML = `<div class="st">${st}</div>${html}`; };
+  const kbds = s => s.hud.map(k => `<kbd>${k}</kbd>`).join('');
+  function load(s) {
+    win.classList.toggle('dark', !!s.dark); wtitle.textContent = s.title; appName.textContent = s.app; wbody.innerHTML = s.body;
+    chips.forEach(c => c.classList.toggle('on', c.dataset.m === s.mode));
+    nowMode.innerHTML = `Showing: ${kbds(s)} <span class="m">${s.mode}</span>`;
+  }
+  function place(s) {
+    const t = boxIn($('.target', wbody), scr), pad = scr.clientWidth * .012, W = scr.clientWidth, H = scr.clientHeight;
+    const r = { x: t.x - pad, y: t.y - pad, w: t.w + pad * 2, h: t.h + pad * 2 };
+    pbody.innerHTML = s.answer; const pw = panel.offsetWidth, ph = panel.offsetHeight;
+    let px = r.x + r.w + pad * 1.6, py = r.y - pad;
+    if (px + pw > W - pad) { px = Math.max(pad, W - pw - pad); py = r.y + r.h + pad; }
+    py = clamp(py, H * .07, H - ph - pad * 2);
+    return { r, px, py, pw, ph };
+  }
+  async function type(html, cps) {
+    const tk = tokenize(html); let i = 0;
+    while (i < tk.length) {
+      i++; while (i < tk.length && tk[i - 1].length > 1 && tk[i - 1][0] === '<') i++;
+      const shown = tk.slice(0, i).join('');
+      pbody.innerHTML = shown + '<span class="tcaret"></span>';
+      capSet(`${kbds(cur_s)} ${cur_s.mode}`, shown);
+      await sleep(1000 / cps);
+    }
+    pbody.innerHTML = html;
+  }
+  let cur_s = SCENES[0];
+  async function scene(s) {
+    cur_s = s;
+    win.classList.add('swap'); panel.classList.remove('on'); sel.style.opacity = 0; await sleep(480);
+    load(s); pbody.innerHTML = ''; pfoot.textContent = 'READY'; sel.classList.remove('flash');
+    win.classList.remove('swap');
+    capSet(`${kbds(s)} ${s.mode}`, '<span style="color:var(--dim)">Watch the screen…</span>');
+    await sleep(650);
+    const L = place(s); pbody.innerHTML = '';
+    moveCur(L.r.x - scr.clientWidth * .03, L.r.y - scr.clientHeight * .02, 700); await sleep(760);
+    setStep(0); hud.innerHTML = kbds(s); hud.classList.add('on'); capSet(`${kbds(s)} ${s.mode}`, 'Press the shortcut…');
+    await sleep(260); setKeys(s.keys, true); hud.classList.add('down');
+    await sleep(620); setKeys(s.keys, false); hud.classList.remove('down');
+    dimmer.classList.add('on'); cur.classList.add('x'); moveCur(L.r.x, L.r.y, 320); await sleep(420); hud.classList.remove('on');
+    setStep(1); capSet(`${kbds(s)} ${s.mode}`, 'Drag over the part you want…');
+    sel.style.transition = 'none'; Object.assign(sel.style, { left: L.r.x + 'px', top: L.r.y + 'px', width: '0px', height: '0px', opacity: 1 });
+    void sel.offsetWidth; sel.style.transition = '';
+    sel.style.width = L.r.w + 'px'; sel.style.height = L.r.h + 'px'; moveCur(L.r.x + L.r.w, L.r.y + L.r.h, 900);
+    await sleep(1020);
+    sel.classList.add('flash'); cur.classList.remove('x'); dimmer.classList.remove('on');
+    setStep(2);
+    Object.assign(panel.style, { left: L.px + 'px', top: L.py + 'px' });
+    pbody.innerHTML = '<span class="working"><i class="spin"></i>Working…</span>'; pfoot.textContent = 'WORKING';
+    panel.classList.add('on'); capSet(`${kbds(s)} ${s.mode}`, '<span style="color:var(--dim)">Working…</span>');
+    moveCur(Math.min(L.px + L.pw + scr.clientWidth * .02, scr.clientWidth * .95), L.py + L.ph * .9, 900);
+    await sleep(1150);
+    await type(s.answer, 42);
+    pfoot.textContent = s.status;
+    await sleep(3000);
+  }
+  let active = false, running = false, wake = null;
+  async function loop() {
+    running = true; let i = 0;
+    for (;;) {
+      if (!active) await new Promise(r => wake = r);
+      await scene(SCENES[i++ % SCENES.length]);
+    }
+  }
+  function setActive(v) {
+    if (v === active) return; active = v;
+    if (v && !running) loop(); else if (v && wake) { const w = wake; wake = null; w(); }
+  }
+  function staticFrame() {
+    const s = SCENES[0]; load(s); const L = place(s);
+    Object.assign(sel.style, { left: L.r.x + 'px', top: L.r.y + 'px', width: L.r.w + 'px', height: L.r.h + 'px', opacity: 1 });
+    Object.assign(panel.style, { left: L.px + 'px', top: L.py + 'px' }); pbody.innerHTML = s.answer; pfoot.textContent = s.status; panel.classList.add('on');
+    setStep(2); capSet(`${kbds(s)} ${s.mode}`, s.answer);
+  }
+  load(SCENES[0]);
+
+  // scroll: open the laptop
+  const how = $('#how'), mac = $('#mac'), stage = $('#macStage'), nav = $('#nav'), bar = $('.progress');
+  let pinned = false, o = -1, sx = 0, sy = 0;
+  function setupPin() { pinned = innerWidth > 900 && innerHeight >= 620 && !reduce; how.classList.toggle('pinned', pinned); }
+  function render() {
+    mac.style.setProperty('--lid', (-90 + o * 102).toFixed(2));
+    mac.style.setProperty('--rx', (-62 + o * 43 + sy * o * 5).toFixed(2));
+    mac.style.setProperty('--ry', (-16 * (1 - o) + sx * o * 9).toFixed(2));
+    mac.style.setProperty('--ty', (-31 * (1 - o)).toFixed(2));
+    mac.style.setProperty('--sc', (.84 + .16 * o).toFixed(3));
+    stage.style.setProperty('--on', clamp((o - .55) / .35).toFixed(3));
+  }
+  function onScroll() {
+    const y = scrollY;
+    nav.classList.toggle('scrolled', y > 24);
+    const h = document.documentElement.scrollHeight - innerHeight; bar.style.setProperty('--p', h > 0 ? (y / h).toFixed(4) : 0);
+    let p;
+    if (reduce) p = 1;
+    else if (pinned) { const r = how.getBoundingClientRect(); p = clamp(-r.top / ((how.offsetHeight - innerHeight) * .5)); }
+    else { const r = stage.getBoundingClientRect(); p = clamp((innerHeight - r.top) / (innerHeight * .8)); }
+    const n = ease(p);
+    if (Math.abs(n - o) > .0004) { o = n; render(); }
+    const hr = how.getBoundingClientRect(), visible = hr.bottom > 0 && hr.top < innerHeight;
+    if (!reduce) setActive(o > .97 && visible);
+  }
+  if (fine && !reduce) how.addEventListener('pointermove', e => { sx = e.clientX / innerWidth - .5; sy = e.clientY / innerHeight - .5; if (o > 0) render(); }, { passive: true });
+  setupPin();
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', () => { setupPin(); o = -1; onScroll(); });
+  onScroll();
+  if (reduce) requestAnimationFrame(staticFrame);
+
+  // the 3D ring of cards
+  const rstage = $('#ringStage'), cards = $$('.rc'); const N = cards.length;
+  let ang = 0, vel = 0, base = reduce ? 0 : .11, drag = false, lastX = 0, R = 0, rVisible = false, raf = 0;
+  const layoutRing = () => { R = Math.round((cards[0].offsetWidth / 2) / Math.tan(Math.PI / N) + (innerWidth < 700 ? 18 : 34)); };
+  const drawRing = () => cards.forEach((c, i) => {
+    const a = ang + i * 360 / N, z = Math.cos(a * Math.PI / 180);
+    c.style.transform = `rotateY(${a.toFixed(2)}deg) translateZ(${R}px)`;
+    c.style.opacity = (.16 + .84 * Math.pow((z + 1) / 2, 1.7)).toFixed(3);
+  });
+  const tick = () => {
+    if (!rVisible) { raf = 0; return; }
+    if (!drag) { vel += (base - vel) * .03; ang -= vel; }
+    drawRing(); raf = requestAnimationFrame(tick);
+  };
+  new IntersectionObserver(([e]) => { rVisible = e.isIntersecting; if (rVisible && !raf) raf = requestAnimationFrame(tick); }).observe(rstage);
+  rstage.addEventListener('pointerdown', e => { drag = true; lastX = e.clientX; vel = 0; rstage.setPointerCapture(e.pointerId); });
+  rstage.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - lastX; lastX = e.clientX; ang += dx * .3; vel = -dx * .3; });
+  const end = () => { drag = false; };
+  rstage.addEventListener('pointerup', end); rstage.addEventListener('pointercancel', end);
+  layoutRing(); drawRing(); addEventListener('resize', () => { layoutRing(); drawRing(); });
+})();
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const small = matchMedia('(max-width: 700px)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const outCubic = t => 1 - Math.pow(1 - t, 3);
+const outBack = t => { const c = 1.9; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const outElastic = t => t === 0 || t === 1 ? t : Math.pow(2, -10 * t) * Math.sin((t * 10 - .75) * (2 * Math.PI) / 3) + 1;
+
+function radial(stops, size = 128) {
+  const c = document.createElement('canvas'); c.width = c.height = size;
+  const g = c.getContext('2d'), grd = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  stops.forEach(([o, col]) => grd.addColorStop(o, col)); g.fillStyle = grd; g.fillRect(0, 0, size, size);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function ringTex() {
+  const s = 256, c = document.createElement('canvas'); c.width = c.height = s; const g = c.getContext('2d');
+  g.strokeStyle = 'rgba(200,180,255,1)'; g.lineWidth = 5; g.shadowColor = 'rgba(173,145,255,1)'; g.shadowBlur = 18;
+  g.beginPath(); g.arc(s / 2, s / 2, s / 2 - 24, 0, Math.PI * 2); g.stroke();
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function squircle(half, n = 5, steps = 180) {
+  const pts = [];
+  for (let i = 0; i < steps; i++) {
+    const t = i / steps * Math.PI * 2, c = Math.cos(t), s = Math.sin(t);
+    pts.push(new THREE.Vector2(half * Math.sign(c) * Math.pow(Math.abs(c), 2 / n), half * Math.sign(s) * Math.pow(Math.abs(s), 2 / n)));
+  }
+  return new THREE.Shape(pts);
+}
+function crystal(R, waist, depth) {
+  const ring = [];
+  for (let i = 0; i < 8; i++) { const a = Math.PI / 2 - i * Math.PI / 4, r = i % 2 ? waist : R; ring.push([Math.cos(a) * r, Math.sin(a) * r, 0]); }
+  const F = [0, 0, depth], B = [0, 0, -depth], pos = [];
+  for (let i = 0; i < 8; i++) { const a = ring[i], b = ring[(i + 1) % 8]; pos.push(...b, ...a, ...F, ...a, ...b, ...B); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals(); return g;
+}
+function bracket(S, L, rc, rad, mat) {
+  const A = new THREE.Vector3(S - L, S, 0), B1 = new THREE.Vector3(S - rc, S, 0), C = new THREE.Vector3(S, S, 0), B2 = new THREE.Vector3(S, S - rc, 0), D = new THREE.Vector3(S, S - L, 0);
+  const path = new THREE.CurvePath(); path.add(new THREE.LineCurve3(A, B1)); path.add(new THREE.QuadraticBezierCurve3(B1, C, B2)); path.add(new THREE.LineCurve3(B2, D));
+  const g = new THREE.Group(), cap = new THREE.SphereGeometry(rad, 24, 16);
+  g.add(new THREE.Mesh(new THREE.TubeGeometry(path, 64, rad, 20, false), mat));
+  const c1 = new THREE.Mesh(cap, mat); c1.position.copy(A); const c2 = new THREE.Mesh(cap, mat); c2.position.copy(D); g.add(c1, c2);
+  return g;
+}
+
+function createWisp(canvas, host, opts = {}) {
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.6 : 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.08;
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+  const camera = new THREE.PerspectiveCamera(30, 1, .1, 100);
+  const root = new THREE.Group(), icon = new THREE.Group(); scene.add(root); root.add(icon);
+
+  // the app icon's rounded plate, with the icon's diagonal gradient
+  const half = 3.3, depth = .34, bev = .16;
+  const plateGeo = new THREE.ExtrudeGeometry(squircle(half), { depth, bevelEnabled: true, bevelThickness: bev, bevelSize: .14, bevelSegments: 8, curveSegments: 12 });
+  plateGeo.translate(0, 0, -(depth + bev) - .04);
+  const pos = plateGeo.attributes.position, cols = [], cA = new THREE.Color('#4a3d73'), cB = new THREE.Color('#141120'), tmp = new THREE.Color();
+  for (let i = 0; i < pos.count; i++) { const t = clamp((pos.getX(i) - pos.getY(i)) / half * .25 + .5); tmp.copy(cA).lerp(cB, t); cols.push(tmp.r, tmp.g, tmp.b); }
+  plateGeo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+  const plate = new THREE.Mesh(plateGeo, new THREE.MeshPhysicalMaterial({ vertexColors: true, metalness: .45, roughness: .3, clearcoat: 1, clearcoatRoughness: .12, envMapIntensity: .75 }));
+  icon.add(plate);
+
+  // corner brackets
+  const bMat = new THREE.MeshPhysicalMaterial({ color: '#bba6ff', metalness: .35, roughness: .22, clearcoat: 1, clearcoatRoughness: .1, emissive: '#6b4bff', emissiveIntensity: .5 });
+  const brackets = [];
+  for (let k = 0; k < 4; k++) {
+    const b = new THREE.Group(); b.add(bracket(1.9, 1.02, .24, .1, bMat)); b.rotation.z = k * Math.PI / 2;
+    const holder = new THREE.Group(); holder.add(b); const a = Math.PI / 4 + k * Math.PI / 2; holder.userData = { dx: Math.cos(a), dy: Math.sin(a) };
+    icon.add(holder); brackets.push(holder);
+  }
+  // the crystal star
+  const starMat = new THREE.MeshPhysicalMaterial({ color: '#e0d6ff', metalness: .12, roughness: .07, clearcoat: 1, clearcoatRoughness: .05, iridescence: 1, iridescenceIOR: 1.7,
+    iridescenceThicknessRange: [120, 620], emissive: '#7b5cff', emissiveIntensity: .32, flatShading: true, envMapIntensity: 1.7 });
+  const star = new THREE.Mesh(crystal(1.28, .4, .5), starMat); star.position.z = .3; icon.add(star);
+  // glows
+  const glowIn = new THREE.Sprite(new THREE.SpriteMaterial({ map: radial([[0, 'rgba(190,165,255,.9)'], [.3, 'rgba(140,110,255,.35)'], [1, 'rgba(123,92,255,0)']]), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: .75 }));
+  glowIn.scale.setScalar(4.4); glowIn.position.z = .02; icon.add(glowIn);
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: radial([[0, 'rgba(123,92,255,.55)'], [.45, 'rgba(123,92,255,.16)'], [1, 'rgba(123,92,255,0)']]), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: .9 }));
+  halo.scale.setScalar(15); halo.position.z = -1.6; root.add(halo);
+  const shock = new THREE.Sprite(new THREE.SpriteMaterial({ map: ringTex(), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0 }));
+  shock.position.z = .5; icon.add(shock);
+
+  // floating particles
+  const PN = opts.particles ?? (small ? 150 : 340);
+  const pGeo = new THREE.BufferGeometry(), pPos = new Float32Array(PN * 3), pCol = new Float32Array(PN * 3), pSpd = new Float32Array(PN), pPh = new Float32Array(PN);
+  const palette = ['#ad91ff', '#ffffff', '#7b5cff', '#d6c9ff'].map(c => new THREE.Color(c));
+  for (let i = 0; i < PN; i++) {
+    const r = 4.2 + Math.random() * 5.5, th = Math.random() * Math.PI * 2;
+    pPos.set([Math.cos(th) * r, (Math.random() - .5) * 11, Math.sin(th) * r - 2.5], i * 3);
+    const c = palette[i % 4]; pCol.set([c.r, c.g, c.b], i * 3); pSpd[i] = .18 + Math.random() * .5; pPh[i] = Math.random() * 6.28;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3)); pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+  const points = new THREE.Points(pGeo, new THREE.PointsMaterial({ size: .12, map: radial([[0, 'rgba(255,255,255,1)'], [.25, 'rgba(255,255,255,.5)'], [1, 'rgba(255,255,255,0)']], 64),
+    vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true, opacity: .95 }));
+  scene.add(points);
+
+  // lights
+  scene.add(new THREE.AmbientLight('#8a74ff', .35));
+  const key = new THREE.PointLight('#b9a2ff', 55, 40, 2); key.position.set(4.5, 3.5, 7); scene.add(key);
+  const rim = new THREE.DirectionalLight('#ffffff', 1.6); rim.position.set(-6, 7, -2); scene.add(rim);
+  const fill = new THREE.PointLight('#ff8fd8', 22, 30, 2); fill.position.set(-5, -4, 5); scene.add(fill);
+
+  const fit = opts.fit ?? 12.5;
+  function resize() {
+    const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h;
+    const dist = (fit / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / Math.min(1, camera.aspect);
+    camera.position.set(0, 0, dist); camera.lookAt(0, 0, 0); camera.updateProjectionMatrix();
+  }
+  resize(); addEventListener('resize', resize);
+
+  let visible = false, raf = 0, t0 = -1, last = 0, first = true; const clock = new THREE.Clock();
+  function frame() {
+    raf = 0; if (!visible || document.hidden) return;
+    const t = clock.getElapsedTime(), dt = Math.min(.05, t - last); last = t;
+    if (t0 < 0) t0 = t;
+    const it = reduce ? 10 : t - t0;
+    // intro: the plate spins in, the brackets snap shut around the star, the star pops
+    icon.rotation.y = (1 - outCubic(clamp(it / 1.7))) * -Math.PI * .95;
+    icon.scale.setScalar(.55 + .45 * outCubic(clamp(it / 1.3)));
+    const ph = reduce ? .9 : ((t + 1.2) % 5.5) / 5.5, pulse = ph < .14 ? Math.sin(ph / .14 * Math.PI) : 0;
+    brackets.forEach((b, k) => { const e = outBack(clamp((it - .45 - k * .09) / .95)); const off = (1 - e) * 2.4 + pulse * .2; b.position.set(b.userData.dx * off, b.userData.dy * off, 0); });
+    star.scale.setScalar(Math.max(.001, outElastic(clamp((it - .9) / 1.4))));
+    star.rotation.y = reduce ? .5 : t * .85; star.rotation.z = Math.sin(t * .6) * .08;
+    starMat.emissiveIntensity = .32 + pulse * .6;
+    shock.material.opacity = ph < .5 && it > 2 ? (1 - ph / .5) * .55 : 0; shock.scale.setScalar(3.2 + ph * 12);
+    glowIn.material.opacity = .62 + Math.sin(t * 2.1) * .12 + pulse * .25;
+    // idle float + pointer + scroll
+    const P = window.__wisp || { px: 0, py: 0 };
+    const sc = opts.scroll ? clamp(scrollY / innerHeight, 0, 1.5) : 0;
+    const ty = (reduce ? .25 : Math.sin(t * .42) * .3) + P.px * .55, tx = (reduce ? -.08 : Math.sin(t * .33) * .1) + P.py * .35 + sc * .5;
+    root.rotation.y += (ty - root.rotation.y) * .05; root.rotation.x += (tx - root.rotation.x) * .05;
+    root.position.y = (reduce ? 0 : Math.sin(t * .9) * .12) - sc * 1.2;
+    const pa = pGeo.attributes.position.array;
+    for (let i = 0; i < PN; i++) { pa[i * 3 + 1] += pSpd[i] * dt * (reduce ? 0 : 1); pa[i * 3] += Math.sin(t * .6 + pPh[i]) * dt * .06; if (pa[i * 3 + 1] > 5.5) pa[i * 3 + 1] = -5.5; }
+    pGeo.attributes.position.needsUpdate = true; points.rotation.y = t * .03;
+    renderer.render(scene, camera);
+    if (first) { first = false; host.classList.add('gl'); }
+    raf = requestAnimationFrame(frame);
+  }
+  const start = () => { if (!raf && visible) raf = requestAnimationFrame(frame); };
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }, { rootMargin: '100px' }).observe(host);
+  document.addEventListener('visibilitychange', start);
+}
+
+try {
+  createWisp(document.getElementById('hero3d'), document.getElementById('heroVisual'), { scroll: true, fit: 10.6 });
+  createWisp(document.getElementById('final3d'), document.getElementById('finalVisual'), { fit: 13.5, particles: small ? 90 : 200 });
+} catch (err) { console.warn('3D off:', err); }
+</script>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
