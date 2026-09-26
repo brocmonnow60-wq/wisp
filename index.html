@@ -129,6 +129,7 @@ section { position: relative; }
 .ticks { display: flex; gap: 8px 20px; flex-wrap: wrap; list-style: none; padding: 0; margin: 26px 0 0; color: var(--dim); font-size: 14.5px; animation: fadeUp 1s var(--ease) .85s both; }
 .ticks li::before { content: "✓"; color: var(--v); margin-right: 7px; font-weight: 700; }
 .hero-visual { position: relative; height: min(600px, 58vw); }
+.hero-visual canvas, .final-visual canvas { -webkit-mask-image: radial-gradient(closest-side, #000 66%, transparent 100%); mask-image: radial-gradient(closest-side, #000 66%, transparent 100%); }
 .hero-visual canvas { position: absolute; left: -14%; top: -14%; width: 128%; height: 128%; opacity: 0; transition: opacity 1.2s; pointer-events: none; }
 .gl canvas { opacity: 1; }
 .fallback-icon { position: absolute; left: 50%; top: 50%; width: 58%; max-width: 330px; translate: -50% -50%; border-radius: 22%;
@@ -143,7 +144,7 @@ section { position: relative; }
 .fc .o { color: var(--muted); }
 .fc .o::before { content: "✦ "; color: var(--v); }
 .fc1 { left: -2%; top: 10%; --d: -26; animation-delay: 1.5s; }
-.fc2 { right: -7%; top: 60%; --d: 34; animation-delay: 1.75s; }
+.fc2 { right: -9%; top: 66%; --d: 34; animation-delay: 1.75s; }
 .fc3 { left: -3%; bottom: 8%; --d: -18; animation-delay: 2s; }
 @keyframes popIn { from { opacity: 0; transform: scale(.85) translateY(12px); } to { opacity: 1; transform: none; } }
 .scroll-hint { position: absolute; z-index: 2; left: 50%; bottom: 26px; translate: -50% 0; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);
