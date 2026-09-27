@@ -32,6 +32,7 @@
   "operatingSystem": "macOS 14 or later", "applicationCategory": "ProductivityApplication",
   "description": "Highlight anything on your Mac's screen and get an answer, translation, summary or explanation right there.",
   "offers": [
+    { "@type": "Offer", "name": "Wisp Free", "price": "0.00", "priceCurrency": "USD", "url": "https://gamingdude1.gumroad.com/l/wisp-free" },
     { "@type": "Offer", "name": "Wisp Lifetime", "price": "15.00", "priceCurrency": "USD", "url": "https://gamingdude1.gumroad.com/l/wisp-lifetime" },
     { "@type": "Offer", "name": "Wisp Monthly", "price": "2.99", "priceCurrency": "USD", "url": "https://gamingdude1.gumroad.com/l/wisp" }
   ] }
@@ -421,8 +422,8 @@ section { position: relative; }
 .pi p { margin: 3px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
 
 /* pricing */
-.price-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 920px; margin-inline: auto; align-items: stretch; }
-@media (max-width: 760px) { .price-grid { grid-template-columns: minmax(0, 1fr); } .pcard { padding: 28px 22px; } }
+.price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 1120px; margin-inline: auto; align-items: stretch; }
+@media (max-width: 980px) { .price-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; } .pcard { padding: 28px 22px; } }
 .pcard { position: relative; display: flex; flex-direction: column; padding: 34px; border-radius: 28px; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
 .pcard.best { border-color: transparent; background: linear-gradient(180deg, rgba(123,92,255,.2), rgba(255,255,255,.03) 60%); box-shadow: 0 50px 120px -60px rgba(123,92,255,.9); }
 @property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
@@ -513,9 +514,9 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 0 56px; colo
       <p class="lede">Press <kbd>⇧⌘Space</kbd> and drag over anything on your Mac’s screen: notes, PDFs, videos, code, charts. Wisp <strong>answers, translates, summarizes or explains it</strong> without you ever leaving the app you’re in.</p>
       <div class="cta-row">
         <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
-        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp" data-gumroad-overlay-checkout="true">Try 7 days free</a>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
       </div>
-      <ul class="ticks"><li><a href="gemini-key.html" style="text-decoration:underline;text-decoration-color:rgba(173,145,255,.5);text-underline-offset:3px">Works with a free Gemini key</a></li><li>Or 100% offline</li><li>macOS 14+ · Apple Silicon &amp; Intel</li></ul>
+      <ul class="ticks"><li><b style="color:var(--v3)">Free version, no card</b></li><li><a href="gemini-key.html" style="text-decoration:underline;text-decoration-color:rgba(173,145,255,.5);text-underline-offset:3px">Works with a free Gemini key</a></li><li>Or 100% offline</li><li>macOS 14+ · Apple Silicon &amp; Intel</li></ul>
     </div>
     <div class="hero-visual" id="heroVisual">
       <img class="fallback-icon" src="icon.png" alt="The Wisp app icon" width="330" height="330">
@@ -780,17 +781,31 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 0 56px; colo
   <div class="wrap">
     <div class="section-head rv">
       <p class="eyebrow">Pricing</p>
-      <h2 class="h2">Pay once. <span class="serif grad">Keep it forever.</span></h2>
-      <p class="sub">Or go monthly and try it free for a week. Both unlock the exact same app.</p>
+      <h2 class="h2">Start free. <span class="serif grad">Unlock it all for $15.</span></h2>
+      <p class="sub">Wisp Free is free forever. When you want every mode and unlimited answers, pay once or go monthly. It’s the same app, just paste your key.</p>
     </div>
     <div class="price-grid">
-      <div class="pcard best rv">
+      <div class="pcard rv">
+        <span class="ptag">Start here</span>
+        <h3>Wisp Free</h3>
+        <div class="amount">$0<small>forever</small></div>
+        <p class="pnote">No card. Just download it.</p>
+        <ul>
+          <li>Answer mode on anything on your screen</li>
+          <li>15 answers a day</li>
+          <li>Free Gemini key or offline models</li>
+          <li>Upgrade anytime with a license key, same app</li>
+        </ul>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+      </div>
+      <div class="pcard best rv" style="--d:80">
         <span class="ptag">Best value</span>
         <h3>Wisp Lifetime</h3>
         <div class="amount">$15<small>one time</small></div>
         <p class="pnote">No subscription. Yours forever.</p>
         <ul>
-          <li>Every mode and feature</li>
+          <li>Every mode: Translate, Summarize, Explain, Rewrite, Custom</li>
+          <li>Unlimited answers + Invisible Ink</li>
           <li>Every future update included</li>
           <li>Use a free Gemini key, your OpenAI key, or offline models</li>
           <li>License key emailed to you instantly</li>
@@ -798,14 +813,14 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 0 56px; colo
         <div class="coupon"><span>Launch deal: <code>LAUNCH</code> = $10 off, first 10 people</span><button type="button" data-copy="LAUNCH">Copy</button></div>
         <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp Lifetime</a>
       </div>
-      <div class="pcard rv" style="--d:100">
-        <span class="ptag">Try it first</span>
+      <div class="pcard rv" style="--d:160">
+        <span class="ptag">Monthly</span>
         <h3>Wisp Monthly</h3>
         <div class="amount">$2.99<small>/ month</small></div>
         <p class="pnote">7-day free trial · cancel anytime</p>
         <ul>
           <li>Try everything free for 7 days</li>
-          <li>Every mode, feature and update</li>
+          <li>Every mode, unlimited answers and every update</li>
           <li>Cancel anytime from your Gumroad library</li>
           <li>Keeps working until the end of the time you paid for</li>
         </ul>
@@ -828,7 +843,7 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 0 56px; colo
       <details class="rv"><summary>Do I have to pay for the AI too?</summary><div class="a"><p>No. Google Gemini has a free tier that works great with Wisp: you paste a free key from Google AI Studio and you’re done (<a href="gemini-key.html" style="color:var(--v)">step-by-step guide</a>). You can also use your own OpenAI key (you pay OpenAI per use) or run a model completely offline with Ollama or LM Studio.</p></div></details>
       <details class="rv"><summary>Why does macOS ask me to click “Open Anyway” the first time?</summary><div class="a"><p>Wisp isn’t in Apple’s paid developer program yet, so macOS asks you to confirm once: System Settings → Privacy &amp; Security → Open Anyway. It takes about 30 seconds and the steps come with your download. After that it opens like any other app.</p></div></details>
       <details class="rv"><summary>What does Wisp see on my screen?</summary><div class="a"><p>Only the rectangle you drag, and only when you press the shortcut. It sends that picture plus the text it recognized on your Mac to the AI you picked, or to nobody if you use a local model. You can switch image sending off so only the text is sent.</p></div></details>
-      <details class="rv"><summary>Lifetime or monthly, which should I get?</summary><div class="a"><p>Lifetime is $15 once and yours forever, updates included. Monthly is $2.99 with a 7-day free trial, which is nice if you want to try it first. Both unlock the exact same app.</p></div></details>
+      <details class="rv"><summary>Free, Lifetime or monthly, which should I get?</summary><div class="a"><p>Start with Wisp Free: Answer mode, 15 answers a day, no card needed. If you want Translate, Summarize, Explain, Rewrite, Custom, Invisible Ink and unlimited answers, Lifetime is $15 once and yours forever, or monthly is $2.99 with a 7-day free trial. All three are the same app; a license key unlocks the rest.</p></div></details>
       <details class="rv"><summary>How do I set it up after buying?</summary><div class="a"><p>Gumroad emails you the download and a license key. Drag Wisp into Applications, open it, paste your license key and your AI key, and you’re set.</p></div></details>
       <details class="rv"><summary>How do updates work?</summary><div class="a"><p>Wisp updates itself. When a new version is out it offers to install it in one click, and you can check anytime with “Check for Updates…” in the menu.</p></div></details>
       <details class="rv"><summary>Which Macs does it work on?</summary><div class="a"><p>Any Mac running macOS 14 Sonoma or later, with Apple Silicon or Intel.</p></div></details>
@@ -849,7 +864,7 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 0 56px; colo
     <h2 class="h2">Stop copy-pasting into AI.<br><span class="serif grad">Just highlight it.</span></h2>
     <div class="cta-row">
       <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
-      <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp" data-gumroad-overlay-checkout="true">Try 7 days free</a>
+      <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
     </div>
   </div>
 </section>
