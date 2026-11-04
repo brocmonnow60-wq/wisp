@@ -2,126 +2,200 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get a free Gemini key for Wisp</title>
-<meta name="description" content="A 2-minute, step-by-step guide to getting a free Google Gemini API key and adding it to Wisp for Mac.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to get a free Gemini API key for Wisp (step by step)</title>
+<meta name="description" content="A 2-minute, step-by-step guide to getting a free Google Gemini API key and adding it to Wisp for Mac. No credit card needed.">
+<link rel="canonical" href="https://wispformac.com/gemini-key.html">
 <meta name="theme-color" content="#07060c">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="canonical" href="https://wispformac.com/gemini-key.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Wisp">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="Get a free Gemini key for Wisp (2 minutes)">
 <meta property="og:description" content="Step by step: get a free Google Gemini API key and paste it into Wisp.">
-<meta property="og:image" content="https://wispformac.com/og.png">
+<meta property="og:url" content="https://wispformac.com/gemini-key.html">
+<meta property="og:image" content="https://wispformac.com/og/gemini-key.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Get a free Gemini key for Wisp, step by step">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Get a free Gemini key for Wisp (2 minutes)">
+<meta name="twitter:description" content="Step by step: get a free Google Gemini API key and paste it into Wisp.">
+<meta name="twitter:image" content="https://wispformac.com/og/gemini-key.jpg">
+<meta name="twitter:image:alt" content="Get a free Gemini key for Wisp, step by step">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Wisp", "item": "https://wispformac.com/"},
+  {"@type": "ListItem", "position": 2, "name": "Get a free Gemini key", "item": "https://wispformac.com/gemini-key.html"}
+ ]
+}
+</script>
 <style>
-:root { --bg: #07060c; --ink: #f5f2ff; --muted: #a49fbb; --dim: #6e6987; --v: #ad91ff; --v2: #7b5cff; --line: rgba(173,145,255,.18);
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI", Roboto, system-ui, sans-serif;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
-* { box-sizing: border-box; }
-html { background: var(--bg); color-scheme: dark; }
-body { margin: 0; color: var(--ink); font: 17px/1.6 var(--font); -webkit-font-smoothing: antialiased;
-  background: radial-gradient(60% 40% at 50% 0%, rgba(123,92,255,.2), transparent 70%), var(--bg); }
-a { color: var(--v); }
-.wrap { width: min(820px, 100% - 32px); margin: 0 auto; padding: 32px 0 90px; }
-.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font: 700 21px/1 ui-rounded, var(--font); letter-spacing: -.02em; }
-.brand img { width: 30px; height: 30px; border-radius: 8px; }
-.pill-link { font-size: 14px; font-weight: 600; color: #140f25; background: linear-gradient(180deg, #d9ccff, #9d7eff); padding: 9px 16px; border-radius: 999px; text-decoration: none; }
-.eyebrow { margin: 54px 0 12px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--v); }
-h1 { font-size: clamp(36px, 7vw, 58px); line-height: 1.02; letter-spacing: -.045em; margin: 0; }
-h1 em { font-style: italic; font-weight: 500; font-family: "Instrument Serif", Georgia, serif; background: linear-gradient(100deg, #fff, #c9b8ff 50%, #9b7cff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.lede { color: var(--muted); font-size: 19px; max-width: 640px; margin: 18px 0 0; }
+body { background: radial-gradient(60% 40% at 50% 0%, rgba(123,92,255,.2), transparent 70%) no-repeat, var(--bg); }
+.guide { width: min(820px, 100% - 32px); margin-inline: auto; padding: 128px 0 40px; }
+.guide .crumbs { display: flex; gap: 8px; margin: 0 0 26px; font-size: 14px; color: var(--dim); }
+.guide .crumbs a { color: var(--muted); }
+.guide .crumbs a:hover { color: var(--ink); }
+.guide h1 { font-size: clamp(36px, 7vw, 58px); line-height: 1.02; letter-spacing: -.045em; margin: 0; }
+.guide .lede { font-size: 19px; max-width: 640px; margin-top: 18px; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .chips span { font-size: 14px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.03); color: #d9d4ee; }
-.steps { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; counter-reset: s; }
-.step { position: relative; border: 1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 24px; padding: 26px 26px 26px 88px; counter-increment: s; }
-.step::before { content: counter(s); position: absolute; left: 24px; top: 24px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+.callout { display: flex; gap: 16px; align-items: flex-start; margin-top: 30px; padding: 20px 22px; border-radius: 20px; border: 1px solid rgba(116,227,166,.28); background: rgba(88,214,141,.06); }
+.callout .ic { flex: none; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: rgba(88,214,141,.14); color: #74e3a6; font-size: 18px; }
+.callout b { display: block; color: var(--ink); }
+.callout p { margin: 4px 0 0; color: var(--muted); font-size: 15.5px; }
+.callout a { color: #74e3a6; text-decoration: underline; text-underline-offset: 3px; }
+.gsteps { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; counter-reset: s; }
+.gstep { position: relative; border: 1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 24px; padding: 26px 26px 26px 88px; counter-increment: s; }
+.gstep::before { content: counter(s); position: absolute; left: 24px; top: 24px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
   font-weight: 800; font-size: 19px; color: #140f25; background: var(--v); box-shadow: 0 0 26px rgba(173,145,255,.5); }
-.step h2 { margin: 6px 0 6px; font-size: 22px; letter-spacing: -.02em; }
-.step p { margin: 0; color: #d6d2e6; }
-.step p + p { margin-top: 10px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 12px 20px; border-radius: 999px; font-weight: 650; text-decoration: none;
-  color: #140f25; background: linear-gradient(180deg, #d9ccff, #ab8fff 55%, #8e6eff); box-shadow: 0 10px 30px -8px rgba(123,92,255,.7); }
-kbd { font: 600 .85em/1 var(--font); padding: .25em .5em; border-radius: .4em; background: #251f38; border: 1px solid rgba(173,145,255,.3); border-bottom-width: 2px; }
+.gstep h2 { margin: 6px 0 6px; font-size: 22px; letter-spacing: -.02em; }
+.gstep p { margin: 0; color: #d6d2e6; }
+.gstep p + p { margin-top: 10px; }
+.gstep .btn { margin-top: 16px; }
 .ui { font-weight: 650; color: #fff; background: rgba(173,145,255,.14); padding: 1px 7px; border-radius: 6px; }
-code { font-family: var(--mono); font-size: .9em; color: #e0d6ff; }
-/* little illustrations */
+.gstep code { font-family: var(--mono); font-size: .9em; color: #e0d6ff; }
 .mock { margin-top: 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.08); background: #111019; padding: 18px; font-size: 14px; }
 .mock .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .fake-btn { display: inline-block; padding: 9px 16px; border-radius: 10px; background: #e8e6f0; color: #1b1a22; font-weight: 600; font-size: 14px; }
 .fake-btn.blue { background: #3b6fe0; color: #fff; }
 .keybox { font-family: var(--mono); font-size: 14px; background: #1d1b27; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 10px 12px; color: #cfc9e6; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.hint { font-size: 12.5px; color: var(--dim); margin-top: 8px; }
+.hint { font-size: 13px; color: var(--dim); margin-top: 8px; }
 .wisp-panel { margin-top: 18px; border-radius: 18px; border: 1px solid rgba(173,145,255,.3); background: #0e0f14; overflow: hidden; font-size: 13.5px; }
 .wisp-panel .bar { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.06); align-items: center; color: var(--dim); font-size: 12px; }
 .wisp-panel .bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
 .wisp-panel .bar i:nth-child(2) { background: #febc2e; } .wisp-panel .bar i:nth-child(3) { background: #28c840; }
-.wisp-panel .body { display: grid; grid-template-columns: 150px 1fr; min-height: 230px; }
-.wisp-panel nav { border-right: 1px solid rgba(255,255,255,.06); padding: 14px 10px; display: grid; gap: 4px; align-content: start; color: var(--muted); }
-.wisp-panel nav span { padding: 7px 10px; border-radius: 8px; }
-.wisp-panel nav span.on { background: rgba(173,145,255,.16); color: #fff; outline: 2px solid var(--v); }
+.wisp-panel .body { display: grid; grid-template-columns: 150px minmax(0, 1fr); min-height: 230px; }
+.wisp-panel .side { border-right: 1px solid rgba(255,255,255,.06); padding: 14px 10px; display: grid; gap: 4px; align-content: start; color: var(--muted); }
+.wisp-panel .side span { padding: 7px 10px; border-radius: 8px; }
+.wisp-panel .side span.on { background: rgba(173,145,255,.16); color: #fff; outline: 2px solid var(--v); }
 .wisp-panel .main { padding: 18px; display: grid; gap: 12px; align-content: start; }
 .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; overflow: hidden; }
 .seg span { padding: 6px 11px; color: var(--muted); font-size: 12.5px; }
 .seg span.on { background: var(--v2); color: #fff; }
 .field { border: 2px solid var(--v); border-radius: 8px; padding: 8px 10px; color: var(--dim); background: #16151e; }
 .save { justify-self: start; padding: 8px 14px; border-radius: 9px; background: linear-gradient(180deg, #c9b8ff, #8e6eff); color: #140f25; font-weight: 700; outline: 3px solid rgba(173,145,255,.35); }
-@media (max-width: 560px) { .step { padding: 80px 20px 22px; } .step::before { top: 20px; left: 20px; } .wisp-panel .body { grid-template-columns: 1fr; } .wisp-panel nav { display: none; } }
-.faq { margin-top: 56px; }
-.faq h2 { font-size: 28px; letter-spacing: -.03em; margin: 0 0 16px; }
-details { border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.025); margin-top: 10px; }
-summary { cursor: pointer; list-style: none; padding: 17px 20px; font-weight: 650; display: flex; gap: 12px; }
-summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; margin-left: auto; color: var(--v); font-size: 22px; line-height: 1; }
-details[open] summary::after { content: "–"; }
-details p { margin: 0; padding: 0 20px 18px; color: var(--muted); font-size: 15.5px; }
-.done { margin-top: 44px; text-align: center; border-radius: 24px; padding: 34px 22px; border: 1px solid rgba(173,145,255,.35);
+.stuck { margin-top: 56px; }
+.stuck h2 { font-size: 28px; letter-spacing: -.03em; margin: 0 0 16px; }
+.stuck .faq { max-width: none; }
+.done { margin-top: 44px; text-align: center; border-radius: 24px; padding: 38px 22px; border: 1px solid rgba(173,145,255,.35);
   background: radial-gradient(120% 120% at 50% 0%, rgba(123,92,255,.25), transparent 60%), rgba(255,255,255,.03); }
 .done h2 { margin: 0; font-size: 26px; letter-spacing: -.02em; }
 .done p { color: var(--muted); margin: 8px 0 0; }
-footer { margin-top: 50px; color: var(--dim); font-size: 13px; }
+.done .cta-row { justify-content: center; margin-top: 22px; }
+.g-note { margin: 28px 0 0; color: var(--dim); font-size: 13.5px; text-align: center; }
+@media (max-width: 560px) {
+  .guide { padding-top: 104px; }
+  .gstep { padding: 80px 20px 22px; } .gstep::before { top: 20px; left: 20px; }
+  .wisp-panel .body { grid-template-columns: minmax(0, 1fr); } .wisp-panel .side { display: none; }
+  .callout { flex-direction: column; gap: 10px; }
+}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <div class="top">
-    <a class="brand" href="./"><img src="icon.png" alt="" width="30" height="30"><span>wisp</span></a>
-    <a class="pill-link" href="https://gamingdude1.gumroad.com/l/wisp-lifetime">Get Wisp</a>
+<!-- site:header (shared by every page; edit all pages together) -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <a class="brand" href="./" aria-label="Wisp home"><img src="favicon.png" alt="" width="30" height="30"><span>wisp</span></a>
+  <nav class="links" aria-label="Main">
+    <div class="dd">
+      <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-modes">Modes<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="dd-panel" id="dd-modes">
+        <a class="mlink" href="auto.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto</b><kbd>⇧⌘Space</kbd><small>Picks the right mode for you</small></a>
+        <a class="mlink" href="answer.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer</b><kbd>⌃1</kbd><small>The direct answer first, then a short why</small></a>
+        <a class="mlink" href="summarize.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize</b><kbd>⌃2</kbd><small>Long text in four short bullets</small></a>
+        <a class="mlink" href="translate.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate</b><kbd>⌃3</kbd><small>Any language into yours</small></a>
+        <a class="mlink" href="rewrite.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Rewrite</b><kbd>⌃4</kbd><small>Clear, natural and polished</small></a>
+        <a class="mlink" href="explain.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain</b><kbd>⌃5</kbd><small>Code, charts and hard ideas, simply</small></a>
+        <a class="mlink" href="custom.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom</b><kbd>⌃6</kbd><small>Your own instruction, one shortcut away</small></a>
+        <div class="dd-foot"><span>Every mode has its own shortcut.</span><a href="./#modes">Compare all modes →</a></div>
+      </div>
+    </div>
+    <a href="./#how">How it works</a>
+    <a href="./#pricing">Pricing</a>
+    <a href="changelog.html">What’s new</a>
+    <a href="./#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i><i></i></button>
+</header>
+<div class="mnav" id="mnav" hidden>
+  <p class="mnav-h">Modes</p>
+  <div class="mnav-modes">
+    <a class="mlink" href="auto.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto</b></a>
+    <a class="mlink" href="answer.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer</b></a>
+    <a class="mlink" href="summarize.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize</b></a>
+    <a class="mlink" href="translate.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate</b></a>
+    <a class="mlink" href="rewrite.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Rewrite</b></a>
+    <a class="mlink" href="explain.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain</b></a>
+    <a class="mlink" href="custom.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom</b></a>
   </div>
+  <div class="mnav-links">
+    <a href="./#how">How it works</a>
+    <a href="./#pricing">Pricing</a>
+    <a href="changelog.html">What’s new</a>
+    <a href="./#faq">FAQ</a>
+    <a href="gemini-key.html">Get a free Gemini key</a>
+  </div>
+  <div class="mnav-cta">
+    <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+    <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+  </div>
+  <p class="mnav-note">On your phone? Get it now and download Wisp on your Mac later. The download link is in your email.</p>
+</div>
+<!-- /site:header -->
 
+<main id="main" class="guide">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Wisp</a><span aria-hidden="true">/</span><span aria-current="page">Free Gemini key</span></nav>
   <p class="eyebrow">Setup guide</p>
-  <h1>Get your free <em>Gemini key</em></h1>
+  <h1>Get your free <span class="serif grad">Gemini key</span></h1>
   <p class="lede">Wisp needs an AI to answer your questions. Google’s Gemini has a free tier, and getting a key takes about 2 minutes. No credit card needed.</p>
   <div class="chips"><span>⏱ About 2 minutes</span><span>💳 No card needed</span><span>👤 Just a Google account</span></div>
 
-  <ol class="steps">
-    <li class="step">
+  <div class="callout">
+    <span class="ic" aria-hidden="true">✦</span>
+    <div><b>On Wisp 1.4.4 or later? The app walks you through this.</b>
+      <p>A Setup Guide opens the first time you launch Wisp. It takes you through getting a free Gemini key step by step, then gives you a practice question to try. This page is here if you’d rather read along, or if you’re adding a key later. <a href="changelog.html">What’s new in 1.4.4</a></p></div>
+  </div>
+
+  <ol class="gsteps">
+    <li class="gstep">
       <h2>Open Google AI Studio</h2>
       <p>Go to Google AI Studio’s API key page and sign in with your Google account (the same one you use for Gmail or YouTube). The first time, Google asks you to accept its terms.</p>
-      <a class="btn" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Open aistudio.google.com/apikey ↗</a>
+      <a class="btn btn-primary" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Open aistudio.google.com/apikey <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>
     </li>
-    <li class="step">
+    <li class="gstep">
       <h2>Click “Create API key”</h2>
       <p>If Google asks you to pick a project, choose the one it suggests or create a new one. Any name works.</p>
       <div class="mock" aria-hidden="true">
         <div class="row"><span class="fake-btn blue">+ Create API key</span><span style="color:var(--dim)">← it looks something like this</span></div>
       </div>
     </li>
-    <li class="step">
+    <li class="gstep">
       <h2>Copy your key</h2>
       <p>You’ll see a long code that starts with <code>AIza</code>. Click the copy button next to it.</p>
-      <div class="mock" aria-hidden="true">
-        <div class="row"><span class="keybox">AIzaSy••••••••••••••••••••••••••••••</span><span class="fake-btn">Copy</span></div>
+      <div class="mock">
+        <div class="row" aria-hidden="true"><span class="keybox">AIzaSy••••••••••••••••••••••••••••••</span><span class="fake-btn">Copy</span></div>
         <p class="hint">🔒 Treat it like a password. Don’t post it or send it to anyone (Wisp support will never ask for it).</p>
       </div>
     </li>
-    <li class="step">
+    <li class="gstep">
       <h2>Paste it into Wisp</h2>
-      <p>Open Wisp and click <span class="ui">Settings</span>. Next to <span class="ui">Run with</span>, choose <span class="ui">Gemini</span>. Paste your key into <span class="ui">Paste your Gemini API key</span>, then click <span class="ui">Save to Keychain</span>.</p>
+      <p>Open Wisp and click <span class="ui">Settings</span>. Next to <span class="ui">Run with</span>, choose <span class="ui">Gemini</span> (new installs already have it selected). Paste your key into <span class="ui">Paste your Gemini API key</span>, then click <span class="ui">Save to Keychain</span>.</p>
       <p>If your Mac asks whether Wisp can use the Keychain, click <span class="ui">Always Allow</span>. That’s where your key is stored safely.</p>
       <div class="wisp-panel" aria-hidden="true">
         <div class="bar"><i></i><i></i><i></i><span style="margin-left:8px">Wisp</span></div>
         <div class="body">
-          <nav><span>Overview</span><span>Invisible Ink</span><span>Session</span><span>Shortcuts</span><span class="on">Settings</span><span>License</span></nav>
+          <div class="side"><span>Overview</span><span>Invisible Ink</span><span>Session</span><span>Shortcuts</span><span class="on">Settings</span><span>License</span></div>
           <div class="main">
             <div>Run with &nbsp;<span class="seg"><span class="on">Gemini</span><span>OpenAI</span><span>Ollama</span><span>LM Studio</span></span></div>
             <div class="field">Paste your Gemini API key</div>
@@ -130,28 +204,56 @@ footer { margin-top: 50px; color: var(--dim); font-size: 13px; }
         </div>
       </div>
     </li>
-    <li class="step">
+    <li class="gstep">
       <h2>Try it</h2>
       <p>Press <kbd>⇧⌘Space</kbd>, drag over a question anywhere on your screen, and the answer appears right next to it. 🎉</p>
     </li>
   </ol>
 
-  <section class="faq">
-    <h2>Stuck?</h2>
-    <details><summary>Is it really free?</summary><p>Yes. Gemini’s free tier has usage limits, so if you ask a lot in a short time, a model can say it’s busy or out of quota. When that happens, Wisp automatically tries your key’s other Gemini models (the “Keep trying other Gemini models” switch in Settings, on by default). Waiting a little also fixes it.</p></details>
-    <details><summary>It says “busy”, “overloaded” or “quota”</summary><p>That’s Google’s free tier being full for a moment, not a problem with your key. Wait a minute and try again, or pick a different model in Settings → Model and click <b>Refresh models</b>.</p></details>
-    <details><summary>AI Studio isn’t available for me</summary><p>Google AI Studio isn’t offered in every country, and Google’s terms require you to be 18 or older. If you can’t use it, Wisp also works with an OpenAI key (pay as you go), or fully offline with Ollama or LM Studio, which are free.</p></details>
-    <details><summary>Is my data private on the free tier?</summary><p>On Gemini’s free tier, Google may use what you send to improve its products, so avoid capturing anything private. For sensitive stuff, run Wisp offline with Ollama or LM Studio, where nothing leaves your Mac.</p></details>
-    <details><summary>I think my key leaked. What do I do?</summary><p>Go back to aistudio.google.com/apikey, delete that key, and create a new one. Then paste the new key into Wisp and click Save to Keychain.</p></details>
-    <details><summary>Where do I put my Wisp license key?</summary><p>That’s a different key! Your Wisp license key comes in your Gumroad receipt email. Paste it on Wisp’s <b>License</b> page.</p></details>
+  <section class="stuck" aria-labelledby="stuck-h">
+    <h2 id="stuck-h">Stuck?</h2>
+    <div class="faq">
+      <details><summary>Is it really free?</summary><div class="a"><p>Yes. Gemini’s free tier has usage limits, so if you ask a lot in a short time, a model can say it’s busy or out of quota. When that happens, Wisp automatically tries your key’s other Gemini models (the “Keep trying other Gemini models” switch in Settings, on by default). Waiting a little also fixes it.</p></div></details>
+      <details><summary>It says “busy”, “overloaded” or “quota”</summary><div class="a"><p>That’s Google’s free tier being full for a moment, not a problem with your key. Wait a minute and try again, or pick a different model in Settings → Model and click <b>Refresh models</b>.</p></div></details>
+      <details><summary>AI Studio isn’t available for me</summary><div class="a"><p>Google AI Studio isn’t offered in every country, and Google’s terms require you to be 18 or older. If you can’t use it, Wisp also works with an OpenAI key (pay as you go), or fully offline with Ollama or LM Studio, which are free.</p></div></details>
+      <details><summary>Is my data private on the free tier?</summary><div class="a"><p>On Gemini’s free tier, Google may use what you send to improve its products, so avoid capturing anything private. For sensitive stuff, run Wisp offline with Ollama or LM Studio, where nothing leaves your Mac.</p></div></details>
+      <details><summary>I think my key leaked. What do I do?</summary><div class="a"><p>Go back to aistudio.google.com/apikey, delete that key, and create a new one. Then paste the new key into Wisp and click Save to Keychain.</p></div></details>
+      <details><summary>Where do I put my Wisp license key?</summary><div class="a"><p>That’s a different key! Your Wisp license key comes in your Gumroad receipt email. Paste it on Wisp’s <b>License</b> page.</p></div></details>
+    </div>
   </section>
 
   <div class="done">
     <h2>That’s it. You’re set up ✨</h2>
     <p>Still stuck? Reply to your Gumroad receipt email and we’ll help.</p>
+    <p>Don’t have Wisp yet? Wisp Free works with this key, no card needed.</p>
+    <div class="cta-row">
+      <a class="btn btn-ghost" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download Wisp free</a>
+      <a class="btn btn-primary" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+    </div>
   </div>
-
-  <footer><a href="./">← Back to Wisp</a> · <a href="privacy.html">Privacy</a> · Wisp isn’t affiliated with Google. Gemini and Google AI Studio are Google’s products and terms.</footer>
+  <p class="g-note">Wisp isn’t affiliated with Google. Gemini and Google AI Studio are Google’s products and terms.</p>
 </main>
+
+<!-- site:footer (shared by every page; edit all pages together) -->
+<footer class="site-foot" data-buybar-hide>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="./"><img src="favicon.png" alt="" width="30" height="30" loading="lazy"><span>wisp</span></a>
+        <p>Highlight anything on your Mac. Get the answer right there.</p>
+        <a class="btn btn-primary btn-sm" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+      </div>
+      <nav class="foot-cols" aria-label="Footer">
+        <div><p class="fh">Modes</p><a href="auto.html">Auto</a><a href="answer.html">Answer</a><a href="summarize.html">Summarize</a><a href="translate.html">Translate</a><a href="rewrite.html">Rewrite</a><a href="explain.html">Explain</a><a href="custom.html">Custom</a></div>
+        <div><p class="fh">Wisp</p><a href="./#how">How it works</a><a href="./#pricing">Pricing</a><a href="changelog.html">What’s new</a><a href="./#faq">FAQ</a></div>
+        <div><p class="fh">Help</p><a href="gemini-key.html">Get a Gemini key</a><a href="privacy.html">Privacy</a><a href="https://www.tiktok.com/@wispformac" rel="noopener">TikTok</a></div>
+        <div><p class="fh">Get Wisp</p><a href="https://gamingdude1.gumroad.com/l/wisp-lifetime">Buy</a><a href="https://gamingdude1.gumroad.com/l/wisp-free">Download free</a><a href="https://gamingdude1.gumroad.com/l/wisp">Free trial</a></div>
+      </nav>
+    </div>
+    <p class="legal">© 2026 Wisp. Wisp isn’t affiliated with Apple, Google, OpenAI, Ollama or LM Studio. Mac and macOS are trademarks of Apple Inc. AI answers can be wrong, so check anything important.</p>
+  </div>
+</footer>
+<!-- /site:footer -->
+<script src="https://gumroad.com/js/gumroad.js"></script>
 </body>
 </html>

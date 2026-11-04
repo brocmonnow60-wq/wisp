@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polish your writing anywhere on your Mac | Wisp</title>
+<meta name="description" content="Press ⌃4 and drag over your own writing in any app. Wisp rewrites it to be clear, natural and polished, in the same language, right next to the original.">
+<link rel="canonical" href="https://wispformac.com/rewrite.html">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wisp">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Polish your writing anywhere on your Mac">
+<meta property="og:description" content="Press ⌃4 and drag over your own writing in any app. Wisp rewrites it to be clear, natural and polished, in the same language, right next to the original.">
+<meta property="og:url" content="https://wispformac.com/rewrite.html">
+<meta property="og:image" content="https://wispformac.com/og/rewrite.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wisp Rewrite mode: Make your writing clear and polished.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Polish your writing anywhere on your Mac">
+<meta name="twitter:description" content="Press ⌃4 and drag over your own writing in any app. Wisp rewrites it to be clear, natural and polished, in the same language, right next to the original.">
+<meta name="twitter:image" content="https://wispformac.com/og/rewrite.jpg">
+<meta name="twitter:image:alt" content="Wisp Rewrite mode: Make your writing clear and polished.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/mode.css">
+<script src="assets/site.js" defer></script>
+<script src="assets/demo.js" defer></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Wisp",
+   "item": "https://wispformac.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Rewrite mode",
+   "item": "https://wispformac.com/rewrite.html"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Does it change my language?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Rewrite keeps the same language. To change languages, use Translate (⌃3)."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Where does the rewrite show up?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Right next to what you selected, like every Wisp answer, so you can compare it with your version and keep what you like."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it OK for schoolwork?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Use it on your own writing and follow your class’s rules on AI tools. Comparing your draft with the rewrite is a good way to learn what makes writing clearer."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is Rewrite in Wisp Free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Rewrite comes with Wisp Lifetime ($15 once) or Wisp Monthly ($2.99 a month with a 7-day free trial). Wisp Free includes Answer mode with 15 answers a day, so you can try how Wisp works first. It’s the same app: a license key unlocks the rest."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I have to pay for the AI too?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Google Gemini has a free tier: paste a free key from Google AI Studio and you’re set. Since Wisp 1.4.4, a Setup Guide walks you through it the first time you open the app (or follow the step-by-step guide). You can also use your own OpenAI key, or run a model offline with Ollama or LM Studio."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<!-- site:header (shared by every page; edit all pages together) -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <a class="brand" href="./" aria-label="Wisp home"><img src="favicon.png" alt="" width="30" height="30"><span>wisp</span></a>
+  <nav class="links" aria-label="Main">
+    <div class="dd">
+      <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-modes">Modes<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="dd-panel" id="dd-modes">
+        <a class="mlink" href="auto.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto</b><kbd>⇧⌘Space</kbd><small>Picks the right mode for you</small></a>
+        <a class="mlink" href="answer.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer</b><kbd>⌃1</kbd><small>The direct answer first, then a short why</small></a>
+        <a class="mlink" href="summarize.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize</b><kbd>⌃2</kbd><small>Long text in four short bullets</small></a>
+        <a class="mlink" href="translate.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate</b><kbd>⌃3</kbd><small>Any language into yours</small></a>
+        <a class="mlink" href="rewrite.html" aria-current="page"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Rewrite</b><kbd>⌃4</kbd><small>Clear, natural and polished</small></a>
+        <a class="mlink" href="explain.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain</b><kbd>⌃5</kbd><small>Code, charts and hard ideas, simply</small></a>
+        <a class="mlink" href="custom.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom</b><kbd>⌃6</kbd><small>Your own instruction, one shortcut away</small></a>
+        <div class="dd-foot"><span>Every mode has its own shortcut.</span><a href="./#modes">Compare all modes →</a></div>
+      </div>
+    </div>
+    <a href="./#how">How it works</a>
+    <a href="./#pricing">Pricing</a>
+    <a href="changelog.html">What’s new</a>
+    <a href="./#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i><i></i></button>
+</header>
+<div class="mnav" id="mnav" hidden>
+  <p class="mnav-h">Modes</p>
+  <div class="mnav-modes">
+    <a class="mlink" href="auto.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto</b></a>
+    <a class="mlink" href="answer.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer</b></a>
+    <a class="mlink" href="summarize.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize</b></a>
+    <a class="mlink" href="translate.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate</b></a>
+    <a class="mlink" href="rewrite.html" aria-current="page"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Rewrite</b></a>
+    <a class="mlink" href="explain.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain</b></a>
+    <a class="mlink" href="custom.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom</b></a>
+  </div>
+  <div class="mnav-links">
+    <a href="./#how">How it works</a>
+    <a href="./#pricing">Pricing</a>
+    <a href="changelog.html">What’s new</a>
+    <a href="./#faq">FAQ</a>
+    <a href="gemini-key.html">Get a free Gemini key</a>
+  </div>
+  <div class="mnav-cta">
+    <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+    <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+  </div>
+  <p class="mnav-note">On your phone? Get it now and download Wisp on your Mac later. The download link is in your email.</p>
+</div>
+<!-- /site:header -->
+
+<main id="main">
+<section class="m-hero">
+  <div class="m-bg" aria-hidden="true"></div>
+  <div class="wrap m-grid">
+    <div class="m-copy">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Wisp</a><span aria-hidden="true">/</span><a href="./#modes">Modes</a><span aria-hidden="true">/</span><span aria-current="page">Rewrite</span></nav>
+      <p class="eyebrow">Rewrite mode · <kbd>⌃4</kbd></p>
+      <h1 class="m-h1">Make your writing <span class="serif grad">clear and polished.</span></h1>
+      <p class="lede">Press <kbd>⌃4</kbd> and drag over something you wrote: an email, a message, a rough paragraph in your notes. Wisp rewrites it to be clear, natural and polished, in the same language, right next to the original.</p>
+      <div class="cta-row" data-buybar-hide>
+        <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+      </div>
+      <p class="plan-note"><span class="badge">Lifetime &amp; Monthly</span><span>Rewrite is part of Wisp Lifetime ($15 once) and Monthly. Wisp Free includes Answer mode with 15 answers a day.</span></p>
+    </div>
+    <div class="m-visual">
+      <figure class="demo-fig">
+        <div class="demo" data-demo aria-hidden="true">
+          <div class="d-win"><div class="d-bar"><i></i><i></i><i></i><span class="d-title">New Message</span></div><div class="d-body"><div class="mail"><div class="mail-h"><b>To: Jordan</b><span>Subject: notes?</span></div><p class="target">hey can u send me the notes from todays class i missed it bc i was sick</p></div></div></div>
+          <div class="d-dim"></div>
+          <div class="d-sel"></div>
+          <div class="d-panel"><div class="d-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z" fill="currentColor"/><path d="M19 3l.6 1.6L21 5.2l-1.4.6L19 7.4l-.6-1.6L17 5.2l1.4-.6z" fill="currentColor"/></svg>wisp<span class="d-mode">Rewrite</span></div><div class="d-ans">Hi Jordan! Could you send me the notes from today’s class? I missed it because I was sick.</div><div class="d-foot">GEMINI · REWRITE</div></div>
+          <div class="d-hud"></div>
+          <div class="d-cur"><svg class="arrow" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.3-4.1 2.7 6.2 3-1.3-2.7-6.1H18z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg><svg class="cross" viewBox="0 0 24 24"><path d="M12 2v8M12 14v8M2 12h8M14 12h8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12 2v8M12 14v8M2 12h8M14 12h8" stroke="#111" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+          <script type="application/json">[{"app": "Mail", "title": "New Message", "mode": "Rewrite", "keys": ["⌃", "4"], "body": "<div class=\"mail\"><div class=\"mail-h\"><b>To: Jordan<\/b><span>Subject: notes?<\/span><\/div><p class=\"target\">hey can u send me the notes from todays class i missed it bc i was sick<\/p><\/div>", "answer": "Hi Jordan! Could you send me the notes from today’s class? I missed it because I was sick.", "status": "GEMINI · REWRITE", "caption": "A quick email, polished."}, {"app": "Pages", "title": "English 9 – Journal.pages", "mode": "Rewrite", "keys": ["⌃", "4"], "body": "<div class=\"doc\"><div class=\"kick\">Journal · Draft<\/div><h4>Saturday<\/h4><p class=\"target\">me and him was going to the store when we seen the parade<\/p><p>It was the loudest thing I’ve ever heard.<\/p><\/div>", "answer": "He and I were going to the store when we saw the parade.", "status": "GEMINI · REWRITE", "caption": "A rough sentence, fixed."}]</script>
+        </div>
+        <ul class="sr-only"><li>A quick email, polished. Wisp’s answer: Hi Jordan! Could you send me the notes from today’s class? I missed it because I was sick.</li><li>A rough sentence, fixed. Wisp’s answer: He and I were going to the store when we saw the parade.</li></ul>
+        <figcaption class="demo-cap"><span class="dc-keys"><kbd>⌃</kbd><kbd>4</kbd></span><span class="dc-text">A quick email, polished.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="block m-steps-sec" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2" id="how-h">Three steps. <span class="serif grad">No copy-paste.</span></h2>
+    </div>
+    <ol class="m-steps">
+      <li class="rv" style="--d:0"><span class="n">1</span><div><b>Press <kbd>⌃4</kbd></b><p>In any app where you’re writing.</p></div></li>
+<li class="rv" style="--d:90"><span class="n">2</span><div><b>Drag over your text</b><p>A sentence, a paragraph, a whole message.</p></div></li>
+<li class="rv" style="--d:180"><span class="n">3</span><div><b>Compare and choose</b><p>The polished version shows up next to yours, so you decide what to change.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block m-uses-sec" aria-labelledby="uses-h">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Where it helps</p>
+      <h2 class="h2" id="uses-h">Your words, <span class="serif grad">just clearer.</span></h2>
+      <p class="sub">Rewrite keeps the language you wrote in. It just reads better.</p>
+    </div>
+    <div class="uses auto">
+      <article class="use card rv" style="--d:0"><span class="emo" aria-hidden="true">📧</span><h3>Emails</h3><p>To a teacher, a club, a manager.</p><div class="ex"><div class="in">hey can u send me the notes from todays class</div><div class="out">Hi! Could you send me the notes from today’s class?</div></div></article>
+      <article class="use card rv" style="--d:80"><span class="emo" aria-hidden="true">📝</span><h3>Rough notes</h3><p>Turn quick notes into clear sentences.</p><div class="ex"><div class="in">me and him was going to the store</div><div class="out">He and I were going to the store.</div></div></article>
+      <article class="use card rv" style="--d:160"><span class="emo" aria-hidden="true">💬</span><h3>Messages</h3><p>Say it clearly the first time.</p></article>
+      <article class="use card rv" style="--d:0"><span class="emo" aria-hidden="true">✍️</span><h3>Your drafts</h3><p>See how a paragraph could read more clearly.</p></article>
+      <article class="use card rv" style="--d:80"><span class="emo" aria-hidden="true">🌍</span><h3>Writing in a second language</h3><p>Rewrite stays in the language you wrote in.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="block m-why-sec" aria-labelledby="why-h">
+  <div class="wrap m-why">
+    <div class="rv">
+      <p class="eyebrow">Why Wisp</p>
+      <h2 class="h2" id="why-h">Built to keep you <span class="serif grad">in the flow.</span></h2>
+      <p class="sub">Wisp lives one shortcut away on your Mac and works in every app. Needs macOS 14 or later, Apple Silicon or Intel.</p>
+    </div>
+    <div class="why-list">
+      <div class="why-i rv" style="--d:0"><span class="ic" aria-hidden="true">✦</span><div><b>Same language</b><p>Rewrite keeps the language you wrote in. To change languages, use Translate.</p></div></div>
+      <div class="why-i rv" style="--d:70"><span class="ic" aria-hidden="true">✦</span><div><b>Clear, natural, polished</b><p>Fixes grammar and awkward phrasing, so it reads clearly and naturally.</p></div></div>
+      <div class="why-i rv" style="--d:140"><span class="ic" aria-hidden="true">✦</span><div><b>Next to your text</b><p>Compare your version and the rewrite side by side, then keep what you like.</p></div></div>
+      <div class="why-i rv" style="--d:210"><span class="ic" aria-hidden="true">✦</span><div><b>Works in every app</b><p>Wisp reads what you drag over, so it works anywhere you write.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block m-faq-sec" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2" id="faq-h">Rewrite mode, <span class="serif grad">answered.</span></h2>
+    </div>
+    <div class="faq">
+      <details class="rv"><summary>Does it change my language?</summary><div class="a"><p>No. Rewrite keeps the same language. To change languages, use Translate (<kbd>⌃3</kbd>).</p></div></details>
+      <details class="rv"><summary>Where does the rewrite show up?</summary><div class="a"><p>Right next to what you selected, like every Wisp answer, so you can compare it with your version and keep what you like.</p></div></details>
+      <details class="rv"><summary>Is it OK for schoolwork?</summary><div class="a"><p>Use it on your own writing and follow your class’s rules on AI tools. Comparing your draft with the rewrite is a good way to learn what makes writing clearer.</p></div></details>
+      <details class="rv"><summary>Is Rewrite in Wisp Free?</summary><div class="a"><p>Rewrite comes with Wisp Lifetime ($15 once) or Wisp Monthly ($2.99 a month with a 7-day free trial). Wisp Free includes Answer mode with 15 answers a day, so you can try how Wisp works first. It’s the same app: a license key unlocks the rest.</p></div></details>
+      <details class="rv"><summary>Do I have to pay for the AI too?</summary><div class="a"><p>No. Google Gemini has a free tier: paste a free key from Google AI Studio and you’re set. Since Wisp 1.4.4, a Setup Guide walks you through it the first time you open the app (or follow the <a href="gemini-key.html">step-by-step guide</a>). You can also use your own OpenAI key, or run a model offline with Ollama or LM Studio.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="block m-others" aria-labelledby="others-h">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">One app, seven modes</p>
+      <h2 class="h2" id="others-h">Seven modes, <span class="serif grad">one shortcut each.</span></h2>
+    </div>
+    <div class="omodes">
+      <a class="card tilt omode rv" style="--d:0" href="auto.html"><span class="glare"></span><span class="pop"><span class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto <kbd>⇧⌘Space</kbd></b><small>Picks the right mode for you</small></span></a>
+      <a class="card tilt omode rv" style="--d:70" href="answer.html"><span class="glare"></span><span class="pop"><span class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer <kbd>⌃1</kbd></b><small>The direct answer first, then a short why</small></span></a>
+      <a class="card tilt omode rv" style="--d:140" href="summarize.html"><span class="glare"></span><span class="pop"><span class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize <kbd>⌃2</kbd></b><small>Long text in four short bullets</small></span></a>
+      <a class="card tilt omode rv" style="--d:0" href="translate.html"><span class="glare"></span><span class="pop"><span class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate <kbd>⌃3</kbd></b><small>Any language into yours</small></span></a>
+      <a class="card tilt omode rv" style="--d:70" href="explain.html"><span class="glare"></span><span class="pop"><span class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain <kbd>⌃5</kbd></b><small>Code, charts and hard ideas, simply</small></span></a>
+      <a class="card tilt omode rv" style="--d:140" href="custom.html"><span class="glare"></span><span class="pop"><span class="mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom <kbd>⌃6</kbd></b><small>Your own instruction, one shortcut away</small></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" data-buybar-hide>
+  <div class="wrap">
+    <div class="cta-card rv">
+      <img src="icon.webp" alt="" width="96" height="96" loading="lazy" decoding="async">
+      <h2 class="h2">Writing something? <span class="serif grad">Make it clear.</span></h2>
+      <p class="sub">Every mode for $15 once, or start with Wisp Free. Works with a free Gemini key or fully offline.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+      </div>
+      <p class="cta-fine"><a class="tlink" href="./#pricing">Compare Free, Lifetime and Monthly</a> · macOS 14+ · Apple Silicon &amp; Intel</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- site:footer (shared by every page; edit all pages together) -->
+<footer class="site-foot" data-buybar-hide>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="./"><img src="favicon.png" alt="" width="30" height="30" loading="lazy"><span>wisp</span></a>
+        <p>Highlight anything on your Mac. Get the answer right there.</p>
+        <a class="btn btn-primary btn-sm" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+      </div>
+      <nav class="foot-cols" aria-label="Footer">
+        <div><p class="fh">Modes</p><a href="auto.html">Auto</a><a href="answer.html">Answer</a><a href="summarize.html">Summarize</a><a href="translate.html">Translate</a><a href="rewrite.html">Rewrite</a><a href="explain.html">Explain</a><a href="custom.html">Custom</a></div>
+        <div><p class="fh">Wisp</p><a href="./#how">How it works</a><a href="./#pricing">Pricing</a><a href="changelog.html">What’s new</a><a href="./#faq">FAQ</a></div>
+        <div><p class="fh">Help</p><a href="gemini-key.html">Get a Gemini key</a><a href="privacy.html">Privacy</a><a href="https://www.tiktok.com/@wispformac" rel="noopener">TikTok</a></div>
+        <div><p class="fh">Get Wisp</p><a href="https://gamingdude1.gumroad.com/l/wisp-lifetime">Buy</a><a href="https://gamingdude1.gumroad.com/l/wisp-free">Download free</a><a href="https://gamingdude1.gumroad.com/l/wisp">Free trial</a></div>
+      </nav>
+    </div>
+    <p class="legal">© 2026 Wisp. Wisp isn’t affiliated with Apple, Google, OpenAI, Ollama or LM Studio. Mac and macOS are trademarks of Apple Inc. AI answers can be wrong, so check anything important.</p>
+  </div>
+</footer>
+<div class="buybar" id="buybar">
+  <img src="favicon.png" alt="" width="34" height="34" loading="lazy">
+  <div class="bb-t"><b>Wisp for Mac</b><span>$15 once · or start free</span></div>
+  <a class="btn btn-ghost" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Free</a>
+  <a class="btn btn-primary" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp</a>
+</div>
+<!-- /site:footer -->
+<script src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>

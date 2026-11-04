@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What’s new in Wisp for Mac | Changelog</title>
+<meta name="description" content="What changed in recent versions of Wisp for Mac: a guided Setup Guide with a free Gemini key walkthrough (1.4.4) and answers that stream in for every AI provider (1.4.3).">
+<link rel="canonical" href="https://wispformac.com/changelog.html">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wisp">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="What’s new in Wisp">
+<meta property="og:description" content="What changed in recent versions of Wisp for Mac: a guided Setup Guide with a free Gemini key walkthrough (1.4.4) and answers that stream in for every AI provider (1.4.3).">
+<meta property="og:url" content="https://wispformac.com/changelog.html">
+<meta property="og:image" content="https://wispformac.com/og/changelog.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="What’s new in Wisp: the 1.4.4 Setup Guide and streaming answers">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What’s new in Wisp">
+<meta name="twitter:description" content="What changed in recent versions of Wisp for Mac: a guided Setup Guide with a free Gemini key walkthrough (1.4.4) and answers that stream in for every AI provider (1.4.3).">
+<meta name="twitter:image" content="https://wispformac.com/og/changelog.jpg">
+<meta name="twitter:image:alt" content="What’s new in Wisp: the 1.4.4 Setup Guide and streaming answers">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/mode.css">
+<script src="assets/site.js" defer></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Wisp",
+   "item": "https://wispformac.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "What’s new",
+   "item": "https://wispformac.com/changelog.html"
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<!-- site:header (shared by every page; edit all pages together) -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <a class="brand" href="./" aria-label="Wisp home"><img src="favicon.png" alt="" width="30" height="30"><span>wisp</span></a>
+  <nav class="links" aria-label="Main">
+    <div class="dd">
+      <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-modes">Modes<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="dd-panel" id="dd-modes">
+        <a class="mlink" href="auto.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto</b><kbd>⇧⌘Space</kbd><small>Picks the right mode for you</small></a>
+        <a class="mlink" href="answer.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer</b><kbd>⌃1</kbd><small>The direct answer first, then a short why</small></a>
+        <a class="mlink" href="summarize.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize</b><kbd>⌃2</kbd><small>Long text in four short bullets</small></a>
+        <a class="mlink" href="translate.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate</b><kbd>⌃3</kbd><small>Any language into yours</small></a>
+        <a class="mlink" href="rewrite.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Rewrite</b><kbd>⌃4</kbd><small>Clear, natural and polished</small></a>
+        <a class="mlink" href="explain.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain</b><kbd>⌃5</kbd><small>Code, charts and hard ideas, simply</small></a>
+        <a class="mlink" href="custom.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom</b><kbd>⌃6</kbd><small>Your own instruction, one shortcut away</small></a>
+        <div class="dd-foot"><span>Every mode has its own shortcut.</span><a href="./#modes">Compare all modes →</a></div>
+      </div>
+    </div>
+    <a href="./#how">How it works</a>
+    <a href="./#pricing">Pricing</a>
+    <a href="changelog.html" aria-current="page">What’s new</a>
+    <a href="./#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i><i></i></button>
+</header>
+<div class="mnav" id="mnav" hidden>
+  <p class="mnav-h">Modes</p>
+  <div class="mnav-modes">
+    <a class="mlink" href="auto.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Auto</b></a>
+    <a class="mlink" href="answer.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.1M12 16.5h.01"/></svg></span><b>Answer</b></a>
+    <a class="mlink" href="summarize.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><b>Summarize</b></a>
+    <a class="mlink" href="translate.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.6 3.2 2.6 5.8 5.5 7M11 5c-.7 3.6-3 6.5-6.5 8"/><path d="M12.5 21l4-9 4 9M14 18h5"/></svg></span><b>Translate</b></a>
+    <a class="mlink" href="rewrite.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><b>Rewrite</b></a>
+    <a class="mlink" href="explain.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><b>Explain</b></a>
+    <a class="mlink" href="custom.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><b>Custom</b></a>
+  </div>
+  <div class="mnav-links">
+    <a href="./#how">How it works</a>
+    <a href="./#pricing">Pricing</a>
+    <a href="changelog.html">What’s new</a>
+    <a href="./#faq">FAQ</a>
+    <a href="gemini-key.html">Get a free Gemini key</a>
+  </div>
+  <div class="mnav-cta">
+    <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+    <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+  </div>
+  <p class="mnav-note">On your phone? Get it now and download Wisp on your Mac later. The download link is in your email.</p>
+</div>
+<!-- /site:header -->
+
+<main id="main">
+<section class="cl-hero">
+  <div class="m-bg" aria-hidden="true"></div>
+  <div class="wrap cl-wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="./">Wisp</a><span aria-hidden="true">/</span><span aria-current="page">What’s new</span></nav>
+    <p class="eyebrow">What’s new</p>
+    <h1 class="m-h1">Wisp keeps <span class="serif grad">getting better.</span></h1>
+    <p class="lede">What changed in recent versions, from your side of the screen. Wisp updates itself: when a new version is out it offers to install it in one click, and every update is signed.</p>
+  </div>
+</section>
+
+<section class="cl-list">
+  <div class="wrap cl-wrap">
+    <article class="cl-entry rv" id="v1-4-4">
+      <div class="cl-meta"><a class="cl-v" href="#v1-4-4">Wisp 1.4.4</a><span class="badge green">Latest</span></div>
+      <div class="cl-card">
+        <div class="cl-text">
+          <h2>A Setup Guide that walks you through it</h2>
+          <p class="cl-lede">Getting started no longer means figuring out API keys on your own.</p>
+          <ul><li>A <b>Setup Guide</b> now opens the first time you launch Wisp.</li><li>It walks you through getting a <b>free Gemini key</b>, step by step.</li><li>Then it gives you a <b>practice question</b>, so you can try your first capture with the guide still open.</li><li>New installs start with <b>Gemini already selected</b>, so there’s one less setting to change.</li></ul>
+        </div>
+        <div class="cl-art" aria-hidden="true"><div class="sg"><div class="sg-h">✦ Setup Guide</div>
+          <div class="sg-s done"><i>✓</i>Get a free Gemini key</div><div class="sg-s done"><i>✓</i>Paste it into Wisp</div><div class="sg-s on"><i>3</i>Try a practice question</div></div></div>
+      </div>
+    </article>
+<article class="cl-entry rv" id="v1-4-3">
+      <div class="cl-meta"><a class="cl-v" href="#v1-4-3">Wisp 1.4.3</a></div>
+      <div class="cl-card">
+        <div class="cl-text">
+          <h2>Answers that stream in</h2>
+          <p class="cl-lede">Read the answer as it’s written instead of waiting for the whole thing.</p>
+          <ul><li>Answers now <b>stream in</b> as they’re written, for all four AI providers: Gemini, OpenAI, Ollama and LM Studio.</li><li><b>Smaller uploads:</b> the capture Wisp sends to your AI provider is now a smaller file.</li></ul>
+        </div>
+        <div class="cl-art" aria-hidden="true"><div class="st"><div class="st-h">✦ wisp <span>Answer</span></div>
+          <p class="st-b"><b>Mitosis</b> makes 2 identical cells, for growth and repair. <b>Meiosis</b> makes 4 cells with half the<span class="st-c"></span></p>
+          <div class="st-p"><span>Gemini</span><span>OpenAI</span><span>Ollama</span><span>LM Studio</span></div></div></div>
+      </div>
+    </article>
+    <aside class="cl-how rv">
+      <h2>How to update</h2>
+      <p>You don’t have to do anything. Wisp checks for new versions on its own and offers to install them in one click. To check right now, choose <b>Check for Updates…</b> in Wisp’s menu.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="cta-band" data-buybar-hide>
+  <div class="wrap">
+    <div class="cta-card rv">
+      <img src="icon.webp" alt="" width="96" height="96" loading="lazy" decoding="async">
+      <h2 class="h2">Not on Wisp yet? <span class="serif grad">Start free.</span></h2>
+      <p class="sub">The Setup Guide walks you through a free Gemini key the first time you open Wisp. Every future update is included with Lifetime.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+        <a class="btn btn-ghost btn-lg" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Download free</a>
+      </div>
+      <p class="cta-fine"><a class="tlink" href="./#pricing">Compare Free, Lifetime and Monthly</a> · macOS 14+ · Apple Silicon &amp; Intel</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- site:footer (shared by every page; edit all pages together) -->
+<footer class="site-foot" data-buybar-hide>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="./"><img src="favicon.png" alt="" width="30" height="30" loading="lazy"><span>wisp</span></a>
+        <p>Highlight anything on your Mac. Get the answer right there.</p>
+        <a class="btn btn-primary btn-sm" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp · <span class="price-tag">$15 once</span></a>
+      </div>
+      <nav class="foot-cols" aria-label="Footer">
+        <div><p class="fh">Modes</p><a href="auto.html">Auto</a><a href="answer.html">Answer</a><a href="summarize.html">Summarize</a><a href="translate.html">Translate</a><a href="rewrite.html">Rewrite</a><a href="explain.html">Explain</a><a href="custom.html">Custom</a></div>
+        <div><p class="fh">Wisp</p><a href="./#how">How it works</a><a href="./#pricing">Pricing</a><a href="changelog.html">What’s new</a><a href="./#faq">FAQ</a></div>
+        <div><p class="fh">Help</p><a href="gemini-key.html">Get a Gemini key</a><a href="privacy.html">Privacy</a><a href="https://www.tiktok.com/@wispformac" rel="noopener">TikTok</a></div>
+        <div><p class="fh">Get Wisp</p><a href="https://gamingdude1.gumroad.com/l/wisp-lifetime">Buy</a><a href="https://gamingdude1.gumroad.com/l/wisp-free">Download free</a><a href="https://gamingdude1.gumroad.com/l/wisp">Free trial</a></div>
+      </nav>
+    </div>
+    <p class="legal">© 2026 Wisp. Wisp isn’t affiliated with Apple, Google, OpenAI, Ollama or LM Studio. Mac and macOS are trademarks of Apple Inc. AI answers can be wrong, so check anything important.</p>
+  </div>
+</footer>
+<div class="buybar" id="buybar">
+  <img src="favicon.png" alt="" width="34" height="34" loading="lazy">
+  <div class="bb-t"><b>Wisp for Mac</b><span>$15 once · or start free</span></div>
+  <a class="btn btn-ghost" href="https://gamingdude1.gumroad.com/l/wisp-free" data-gumroad-overlay-checkout="true">Free</a>
+  <a class="btn btn-primary" href="https://gamingdude1.gumroad.com/l/wisp-lifetime" data-gumroad-overlay-checkout="true">Get Wisp</a>
+</div>
+<!-- /site:footer -->
+<script src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
